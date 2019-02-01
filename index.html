@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../../../favicon.ico">
+
+  <title>Driver Scorecard</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- FontAwesome import -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+</head>
+
+<body>
+    <h1 class=" ml-5 pl-5 py-5  ">Driver Scorecard<small class="text-muted"> *New</Small></h1>
+   
+    
+      <div class="card w-75 text-center mx-auto">
+          <div >
+          </div>
+          <div class="row">
+              <div class="col-sm-3">
+                  <div class="card">
+                      <div class="card-body">
+                          <h5 class="card-title text-center"> Active Vehicles:</h5><small>this month</small>
+                          <p id="activevehicles" class="card-text text-center">something here</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="card">
+                      <div class="card-body">
+                          <h5 class="card-title text-center">
+                              Miles Driven:</h5><small>this month</small>
+                          <p class="card-text text-center" id="milesdriven">something here</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="card">
+                      <div class="card-body">
+                          <h5 class="card-title text-center"> Vehicles driving within Goal:</h5><small>this month</small>
+                          <p class="card-text text-center" id="currentTemphi">something here</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                  <div class="card">
+                      <div class="card-body">
+                          <h5 class="card-title text-center">Vehicles below Goal:</h5><small>this month</small>
+                          <p class="card-text text-center " id="currentTemplow">something here</p>
+                      </div>
+                  </div>
+              </div>
+
+
+          </div>
+      </div>
+
+    <table id="table" class="table table-striped w-75 mx-auto  ">
+      <thead>
+        <tr>
+            <th class=" text-center align-middle"><h4>Fleet Stats Overview</h4>
+              <div class="container-fluid ">
+                  <div class="text-center mb-3">
+                      <div class="chart-container ">
+            
+                          <canvas class="" id="doughnut-chart"  ></canvas>
+                          </div>
+            
+                      <div class="chart-container text-dark">
+            
+                      <canvas class="" id="myChart" ></canvas>
+                      </div>
+            
+                     
+                
+                        </div>
+
+        </tr>
+        <tr class="d-flex">
+          <th class="col-2 text-center align-middle"><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Label</div>
+          </th>
+          <th class="col-1 text-center align-middle"><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Miles Driven </div>
+          </th>
+          <th class="text-center  align-middle col-3 "><i class="far fa-chart-bar fa-3x main-color-bg"></i><div>Statistics<br><small>Company % Impact</small></div>
+          </th>
+          <th class="text-center  align-middle col-1 "><i class="fas fa-clipboard-list  fa-3x main-color-bg"></i><div>Score<br><small>Goal</small></div>
+          </th>
+          <th class="text-center  align-middle col-1 "><i class="fas fa-car-crash fa-3x icn main-color-bg"></i><div>Harsh turn Events</div>
+          </th>
+          <th class="text-center  align-middle col-1"><i class="fas fa-gas-pump fa-3x icn main-color-bg"></i><div>Idle Events</div>
+          </th>
+          <th class="text-center  align-middle col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Accel Events</div>
+          </th>
+          <th class="text-center  align-middle col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Deccel Events</div>
+          </th>
+          <th class="text-center  align-middle col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Speeding Events</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+
+  </div>
+  <!-- added jquery cdn -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- adding in charting cdn -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+  <!-- custom js script -->
+  <script src="js/jquery.js"></script>
+
+</body>
+
+</html>

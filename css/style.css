@@ -1,0 +1,121 @@
+
+.container-fluid{
+    padding: 0;
+    margin: 0;
+}
+.main-color-bg {
+  color: #4E8920;
+}
+#engagementperc {
+  float: left;
+}
+.bg-th{
+  background: #7A7A7A;
+
+}
+.svg {
+  width: 100px;
+  height: auto;
+}
+.surveyQuestion{
+/* font-size: 1.1em; */
+}
+td {
+  text-align: center;
+}
+
+th {
+  font-size: .8rem;
+}
+
+.progress {
+  width: 100%;
+  position: relative;
+  padding: 0px;
+  margin: 0;
+  align-content: center;
+
+  height: 30px;
+}
+
+#percent {
+  position: absolute;
+  left: 50%;
+}
+
+.bar {
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  color: white;
+  
+}
+
+
+/* First Progress Bar */
+.bar0 {
+  background-color: #c45850;
+
+  
+}
+/* second Progress Bar */
+
+.bar2 {
+  background-color: #3e95cd;
+
+  
+}
+/* third Progress Bar */
+
+.bar3 {
+  background-color: #3cba9f;
+
+  
+}
+
+/* 4th Progress Bar */
+
+.bar4 {
+  background-color: #e8c3b9;
+
+  
+}
+/* 5th Progress Bar */
+
+.bar5 {
+  background-color: #8e5ea2;
+
+  
+}
+
+
+
+.danger {
+  color: red;
+}
+.success {
+  color: green;
+}
+
+
+
+section {
+  margin-top: 10px;
+}
+
+.chart-container {
+  /* position: relative; */
+  
+  display: inline-block;
+  margin: auto;
+  height: 25vh;
+  width: 25vw;
+}
+
+.bar:hover, .bar2:hover, .bar3:hover, .bar4:hover, .bar5:hover {
+  font-size: 1.3em;
+  font-weight: bold;
+  color:black;
+}
