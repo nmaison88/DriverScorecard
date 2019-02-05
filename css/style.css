@@ -119,3 +119,37 @@ section {
   font-weight: bold;
   color:black;
 }
+@media only screen and (max-width: 425px) {
+  h1{font-size:3em;
+  text-align: center; }
+  body{
+  font-size: 0.6em;}
+.card{font-size: 0.6em!important;
+width: 100%;
+margin: 0 auto; /* Added */
+float: none; /* Added */
+margin-bottom: 10px; /* Added */
+}
+/* table{
+color:red;
+max-width: 10vw;
+} */
+
+} 
+@media only screen and (max-width: 600px) {
+  body{
+  font-size: 0.6em;}
+.card{font-size: 0.6em!important;
+height: 100%;}
+
+
+} 
+
+@media only screen and (max-width: 1440px) {
+  body{
+  font-size: 0.6em;}
+.card{font-size: 0.6em!important;
+height: 100%;}
+
+
+} 
