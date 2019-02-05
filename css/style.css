@@ -107,7 +107,6 @@ section {
 
 .chart-container {
   /* position: relative; */
-  
   display: inline-block;
   margin: auto;
   height: 25vh;
@@ -129,6 +128,7 @@ width: 100%;
 margin: 0 auto; /* Added */
 float: none; /* Added */
 margin-bottom: 10px; /* Added */
+justify-content: center;
 }
 /* table{
 color:red;
@@ -138,6 +138,8 @@ max-width: 10vw;
 } 
 @media only screen and (max-width: 600px) {
   body{
+    margin: 0;
+    padding: 0;
   font-size: 0.6em;}
 .card{font-size: 0.6em!important;
 height: 100%;}
