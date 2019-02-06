@@ -1,6 +1,8 @@
 
 $(document).ready(function () {
   console.log("ready!");
+
+ 
   var database = [];
   // console.log("get ajax");
   $.get(
@@ -138,15 +140,30 @@ $(document).ready(function () {
           '<td class="' + redchk1 + " col-1 " + header + '">' + data.list[i].rapidacell + "</td>" +
           '<td class="' + " col-1 " + header + '">' + data.list[i].hrshbreak + "</td>" +
           '<td class="' + redchk3 + " col-1 " + header + '">' + data.list[i].Speeding + "</td>" +
-          '<td class="' + grade + " col-1 " + header + '">' + Inputscore+ "%" + "</td>" 
+          '<td class="' + grade + " col-1 " + header + '">' + Inputscore+  "</td>" 
           + "</tr>"
           ;
         $("table").append(row);
+      
         i++;
       });
+      // Populate the table after grabbing the json data and parsing
+      $('#table').DataTable({
+        "paging": true,
+        "searching": true,
+        "lengthChange": true,
+        "ordering": true,
+        "info": false,
+        "autoWidth": true,
+        "sDom": 'lfrtip',
+        // "sPaginationType": "full_numbers"
+    });
+    
 
 
       $('#activevehicles').text(activeVehicles + " of " + mileageTotal.length)
+      $('label').addClass("mx-auto").css("font-size","1.2em");
+
 
 
 
@@ -238,18 +255,19 @@ $(document).ready(function () {
               "#8e5ea2"
 
             ],//can be an array of colors per each bar or one to rule them all.
-            borderColor:'rgba(1,125,132)',
-            borderWidth: 1},
+            borderColor: 'rgba(1,125,132)',
+            borderWidth: 1
+          },
           ]
         },
         options: {
           maintainAspectRatio: false,
           scales: {
-            yAxes: [{
+          yAxes: [{
               stacked: true,
               gridLines: {
-                display: true,
-                color: "rgba(255,99,132,0.2)"
+              display: true,
+              color: "rgba(255,99,132,0.2)"
               }
             }],
             xAxes: [{
@@ -263,36 +281,30 @@ $(document).ready(function () {
       });
       var myChart2 = new Chart(document.getElementById("area-chart"), {
         type: 'line',
-
         data: {
           labels: ["Idle",
             "hard corner",
             "Rapid start",
             "Sudden Stop",
             "Speeding"],
-          "datasets": datasets,
-          // "datasets":[{"label":assets[0],"data":[65,59,80,81,56,55,40],"fill":false,"lineTension":0}                
-
+            "datasets": datasets,
         },
         options: {
           maintainAspectRatio: true,
           responsive: true,
           legend: {
-            position: 'bottom',
+          position: 'bottom',
           },
-}
-        
+        }
+
       })
     }
-
-
- 
-
+   
   );//end of the Get Json
   function add(a, b) {
     return a + b;
   }
-
+  
 });
 
 
