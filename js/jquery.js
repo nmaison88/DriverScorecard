@@ -16,6 +16,8 @@ $(document).ready(function () {
       var hrshturnTotal = [];
       var hrshbreakTotal = [];
       var rapidacellTotal = [];
+      var assets=[];
+      var datasets=[];
       var mileageTotal = [];
       var Idlesum = 0;
       var speedingsum = 0;
@@ -25,7 +27,8 @@ $(document).ready(function () {
       var mileagesum=0;
       var activeVehicles=0;
       console.log(database);
-
+      graphColors=['rgba(40,40,255,0.8)','rgba(255,40,40,8)','rgba(40,255,40,8)','rgba(255,255,40,0.8)','rgba(40,255,255,0.8)','rgba(100,15,18,0.8)']; 
+      var t=0;
       database.list.forEach(function (key) {
         mileageTotal.push(key.mileage);
         idleTotal.push(key.idle);
@@ -33,6 +36,12 @@ $(document).ready(function () {
         hrshturnTotal.push(key.hrshturn);
         hrshbreakTotal.push(key.hrshbreak);
         rapidacellTotal.push(key.rapidacell);
+        assets.push(key.vehicle);
+        datasets.push({"label":key.vehicle,borderColor:graphColors[t],backgroundColor:graphColors[t],"data":[key.idle,key.hrshturn,key.rapidacell,key.hrshbreak,key.Speeding],"fill":false,"lineTension":0 })
+        t++;
+        console.log("t:" ,t)
+        if(t>graphColors.length){t=0;}
+
       
       });
       for (var w = 0; w < mileageTotal.length; w++) {
@@ -70,6 +79,7 @@ $(document).ready(function () {
         var indvhrshbreakpercent=(Math.round((data.list[i].hrshbreak * 100) / hrshbreaksum)); 
         var indvhrshtrnpercent=(Math.round((data.list[i].hrshturn * 100) / hrshturnsum)); 
 
+            // "datasets":[{"label":assets[0],"data":[65,59,80,81,56,55,40],"fill":false,"lineTension":0}                
 
         if (data.list[i].hrshbreak <= goal) {
           var hrshcheck = "success";
@@ -180,8 +190,10 @@ $(document).ready(function () {
         }
       });
 
+    
 // console.log("Idlesum",Idlesum)
 // console.log("idleTotal",idleTotal)
+console.log(datasets);
       var ctx = document.getElementById("myChart").getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'bar',
@@ -236,6 +248,20 @@ $(document).ready(function () {
         }
 
       });
+      var myChart2= new Chart(document.getElementById("area-chart"), {
+        type: 'line',
+
+        data: {
+          labels: ["Idle",
+            "hard corner",
+            "Rapid start",
+            "Sudden Stop",
+            "Speeding"],
+            "datasets":datasets,
+            // "datasets":[{"label":assets[0],"data":[65,59,80,81,56,55,40],"fill":false,"lineTension":0}                
+            
+        }
+    })
     }
 
 
