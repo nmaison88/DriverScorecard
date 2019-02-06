@@ -1,31 +1,32 @@
+body {
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 11px;
+}
 
-.container-fluid{
-    padding: 0;
-    margin: 0;
+.container-fluid {
+  padding: 0;
+  margin: 0;
 }
 .main-color-bg {
-  color: #4E8920;
+  color: #4e8920;
 }
 #engagementperc {
   float: left;
 }
-.bg-th{
-  background: #7A7A7A;
-
+.bg-th {
+  background: #7a7a7a;
 }
 .svg {
   width: 100px;
   height: auto;
 }
-.surveyQuestion{
-/* font-size: 1.1em; */
-}
+
 td {
   text-align: center;
 }
 
 th {
-  font-size: .8rem;
+  /* font-size: .8rem; */
 }
 
 .progress {
@@ -50,47 +51,33 @@ th {
   display: inline-block;
   position: relative;
   color: white;
-  
 }
-
 
 /* First Progress Bar */
 .bar0 {
   background-color: #c45850;
-
-  
 }
 /* second Progress Bar */
 
 .bar2 {
   background-color: #3e95cd;
-
-  
 }
 /* third Progress Bar */
 
 .bar3 {
   background-color: #3cba9f;
-
-  
 }
 
 /* 4th Progress Bar */
 
 .bar4 {
   background-color: #e8c3b9;
-
-  
 }
 /* 5th Progress Bar */
 
 .bar5 {
   background-color: #8e5ea2;
-
-  
 }
-
-
 
 .danger {
   color: red;
@@ -99,7 +86,18 @@ th {
   color: green;
 }
 
-
+.AScore {font-size: 1.3em;
+  color: #3cba9f;
+}
+.BScore {font-size: 1.3em;
+  color: #3e95cd;
+}
+.CScore {font-size: 1.3em;
+  color: #8e5ea2;
+}
+.FScore {font-size: 1.3em;
+  color: #c45850;
+}
 
 section {
   margin-top: 10px;
@@ -112,46 +110,60 @@ section {
   height: 25vh;
   width: 25vw;
 }
-
-.bar:hover, .bar2:hover, .bar3:hover, .bar4:hover, .bar5:hover {
+.chart {
+  display: inline-block;
+  margin: auto;
+  height: 25vh;
+  width: 25vw;
+}
+.bar:hover,
+.bar2:hover,
+.bar3:hover,
+.bar4:hover,
+.bar5:hover {
   font-size: 1.3em;
   font-weight: bold;
-  color:black;
+  color: black;
 }
 @media only screen and (max-width: 425px) {
-  h1{font-size:3em;
-  text-align: center; }
-  body{
-  font-size: 0.6em;}
-.card{font-size: 0.6em!important;
-width: 100%;
-margin: 0 auto; /* Added */
-float: none; /* Added */
-margin-bottom: 10px; /* Added */
-justify-content: center;
-}
-/* table{
+  h1 {
+    font-size: 3em;
+    text-align: center;
+  }
+  body {
+    font-size: 0.6em;
+  }
+  .card {
+    font-size: 0.6em !important;
+    width: 100%;
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    justify-content: center;
+  }
+  /* table{
 color:red;
 max-width: 10vw;
 } */
-
-} 
+}
 @media only screen and (max-width: 600px) {
-  body{
+  body {
     margin: 0;
     padding: 0;
-  font-size: 0.6em;}
-.card{font-size: 0.6em!important;
-height: 100%;}
-
-
-} 
+    font-size: 0.6em;
+  }
+  .card {
+    font-size: 0.6em !important;
+    height: 100%;
+  }
+}
 
 @media only screen and (max-width: 1440px) {
-  body{
-  font-size: 0.6em;}
-.card{font-size: 0.6em!important;
-height: 100%;}
-
-
-} 
+  body {
+    font-size: 0.6em;
+  }
+  .card {
+    font-size: 0.6em !important;
+    height: 100%;
+  }
+}

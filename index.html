@@ -20,43 +20,43 @@
 </head> -->
 
 <body>
-    <h1 class=" ml-5 pl-5 py-5  ">Driver Scorecard<small class="text-muted"> *New</Small></h1>
+    <h1 class=" ml-5 pl-5 py-5  ">Driver Scorecard</h1>
    
     
-      <div class="card w-75 text-center mx-auto">
+      <div class=" w-75 text-center mx-auto">
           <div >
           </div>
           <div class="row">
               <div class="col-sm-3 ">
                   <div class="card ">
                       <div class="card-body  ">
-                          <h5 class="card-title text-nowrap text-center"> Active Vehicles:</h5><small>this month</small>
-                          <p id="activevehicles" class="card-text  text-center">#</p>
+                          <h6 class="card-title text-nowrap text-center"> Active Vehicles:</h6><small>this month</small>
+                          <h6 id="activevehicles" class="card-text  text-center">#</h6>
                       </div>
                   </div>
               </div>
               <div class="col-sm-3 ">
                   <div class="card ">
                       <div class="card-body  ">
-                          <h5 class="card-title text-nowrap text-center">
-                              Miles Driven:</h5><small>this month</small>
-                          <p class="card-text  text-center" id="milesdriven">something here</p>
+                          <h6 class="card-title text-nowrap text-center">
+                              Miles Driven:</h6><small>this month</small>
+                          <h6 class="card-text  text-center" id="milesdriven">something here</h6>
                       </div>
                   </div>
               </div>
               <div class="col-sm-3 ">
                   <div class="card ">
                       <div class="card-body  ">
-                          <h5 class="card-title text-nowrap text-center"> Vehicles within Goal:</h5><small>this month</small>
-                          <p class="card-text  text-center" id="currentTemphi">#</p>
+                          <h6 class="card-title text-nowrap text-center"> Vehicles within Goal:</h6><small>this month</small>
+                          <h6 class="card-text AScore text-center" id="withingoal">#</h6>
                       </div>
                   </div>
               </div>
               <div class="col-sm-3 ">
                   <div class="card ">
                       <div class="card-body  ">
-                          <h5 class="card-title text-nowrap text-center">Vehicles below Goal:</h5><small>this month</small>
-                          <p class="card-text  text-center " id="currentTemplow">#</p>
+                          <h6 class="card-title text-nowrap text-center">Vehicles below Goal:</h6><small>this month</small>
+                          <h6 class="card-text FScore text-center " id="outsidegoal">#</h6>
                       </div>
                   </div>
               </div>
@@ -65,22 +65,22 @@
           </div>
       </div>
       <div class="text-center mb-3">
-        <div class="chart-container ">
+        <div class="chart-container mt-3 ">
 
             <canvas class="" id="doughnut-chart"  ></canvas>
             </div>
 
-        <div class="chart-container text-dark">
+        <div class="chart-container mt-3 text-dark">
 
         <canvas class="" id="myChart" ></canvas>
         </div>
-        <div class="chart-container text-dark">
+        <div class="chart-container mt-3 text-dark">
+            <canvas class="chart" id="area-chart" ></canvas>
 
-            <canvas class="" id="area-chart" ></canvas>
             </div>
     
        
-  
+
           </div>
     <table id="table" class="  table-responsive{-sm|-md|-lg|-xl} table-striped w-75 mx-auto  ">
       <thead>
@@ -97,8 +97,7 @@
           </th>
           <th class="text-center  align-middle col-3 "><i class="far fa-chart-bar fa-3x main-color-bg"></i><div>Statistics<br><small>Company % Impact</small></div>
           </th>
-          <th class="text-center  align-middle col-1 "><i class="fas fa-clipboard-list  fa-3x main-color-bg"></i><div>Score<br><small>Goal</small></div>
-          </th>
+
           <th class="text-center  align-middle col-1 "><i class="fas fa-car-crash fa-3x icn main-color-bg"></i><div>Harsh turn Events</div>
           </th>
           <th class="text-center  align-middle col-1"><i class="fas fa-gas-pump fa-3x icn main-color-bg"></i><div>Idle Events</div>
@@ -109,12 +108,23 @@
           </th>
           <th class="text-center  align-middle col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Speeding Events</div>
           </th>
+          <th class="text-center  align-middle col-1 "><i class="fas fa-clipboard-list  fa-3x main-color-bg"></i><div>Score<br><small>Goal</small></div>
+          </th>
         </tr>
       </thead>
       <tbody>
 
       </tbody>
     </table>
+    <nav aria-label="Page navigation ">
+  <ul class="pagination justify-content-center mt-3">
+          <li class="page-item text"><a class="page-link text-dark" href="#">Previous</a></li>
+          <li class="page-item text"><a class="page-link text-dark" href="#">1</a></li>
+          <li class="page-item text"><a class="page-link text-dark" href="#">2</a></li>
+          <li class="page-item text"><a class="page-link text-dark" href="#">3</a></li>
+          <li class="page-item text"><a class="page-link text-dark" href="#">Next</a></li>
+        </ul>
+      </nav>
 
   </div>
   <!-- added jquery cdn -->

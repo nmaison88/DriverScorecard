@@ -1,14 +1,14 @@
 
 $(document).ready(function () {
   console.log("ready!");
-  var database=[];
+  var database = [];
   // console.log("get ajax");
   $.get(
     "https://api.myjson.com/bins/1a9s0o",
     function (data) {
       $(".result").html(data);
       database = data;
-      console.log(database.list);
+      // console.log(database.list);
       var i = 0;
       var goal = 2;
       var idleTotal = [];
@@ -16,19 +16,19 @@ $(document).ready(function () {
       var hrshturnTotal = [];
       var hrshbreakTotal = [];
       var rapidacellTotal = [];
-      var assets=[];
-      var datasets=[];
+      var assets = [];
+      var datasets = [];
       var mileageTotal = [];
       var Idlesum = 0;
       var speedingsum = 0;
       var hrshbreaksum = 0;
       var hrshturnsum = 0;
       var rapidacellsum = 0;
-      var mileagesum=0;
-      var activeVehicles=0;
-      console.log(database);
-      graphColors=['rgba(40,40,255,0.8)','rgba(255,40,40,8)','rgba(40,255,40,8)','rgba(255,255,40,0.8)','rgba(40,255,255,0.8)','rgba(100,15,18,0.8)']; 
-      var t=0;
+      var mileagesum = 0;
+      var activeVehicles = 0;
+      // console.log(database);
+      graphColors = ['#c45850','#3e95cd','#3cba9f','#e8c3b9','#8e5ea2','#A28E5E','rgba(40,40,255,0.8)', 'rgba(255,40,40,8)', 'rgba(40,255,40,8)', 'rgba(255,255,40,0.8)', 'rgba(40,255,255,0.8)', 'rgba(100,15,18,0.8)'];
+      var t = 0;
       database.list.forEach(function (key) {
         mileageTotal.push(key.mileage);
         idleTotal.push(key.idle);
@@ -37,12 +37,12 @@ $(document).ready(function () {
         hrshbreakTotal.push(key.hrshbreak);
         rapidacellTotal.push(key.rapidacell);
         assets.push(key.vehicle);
-        datasets.push({"label":key.vehicle,borderColor:graphColors[t],backgroundColor:graphColors[t],"data":[key.idle,key.hrshturn,key.rapidacell,key.hrshbreak,key.Speeding],"fill":false,"lineTension":0 })
+        datasets.push({ "label": key.vehicle, borderColor: graphColors[t], backgroundColor: graphColors[t], "data": [key.idle, key.hrshturn, key.rapidacell, key.hrshbreak, key.Speeding], "fill": false, "lineTension": 0 })
         t++;
-        console.log("t:" ,t)
-        if(t>graphColors.length){t=0;}
+        // console.log("t:" ,t)
+        if (t > graphColors.length) { t = 0; }
 
-      
+
       });
       for (var w = 0; w < mileageTotal.length; w++) {
         mileagesum += mileageTotal[w];
@@ -62,24 +62,20 @@ $(document).ready(function () {
       for (var w = 0; w < idleTotal.length; w++) {
         hrshturnsum += hrshturnTotal[w];
       };
-      activeVehicles=mileageTotal.length;
+      activeVehicles = mileageTotal.length;
       for (var w = 0; w < mileageTotal.length; w++) {
-        if(mileageTotal[w]==0){
+        if (mileageTotal[w] == 0) {
           activeVehicles--;
-      }
+        }
       }
       Object.keys(data.list).forEach(function (key) {
-        
-        
-       
 
-        var indvidlepercent=(Math.round((data.list[i].idle * 100) / Idlesum)); 
-        var indvspeedpercent=(Math.round((data.list[i].Speeding * 100) / speedingsum)); 
-        var indvrapidaccpercent=(Math.round((data.list[i].rapidacell * 100) / rapidacellsum)); 
-        var indvhrshbreakpercent=(Math.round((data.list[i].hrshbreak * 100) / hrshbreaksum)); 
-        var indvhrshtrnpercent=(Math.round((data.list[i].hrshturn * 100) / hrshturnsum)); 
+        var indvidlepercent = (Math.round((data.list[i].idle * 100) / Idlesum));
+        var indvspeedpercent = (Math.round((data.list[i].Speeding * 100) / speedingsum));
+        var indvrapidaccpercent = (Math.round((data.list[i].rapidacell * 100) / rapidacellsum));
+        var indvhrshbreakpercent = (Math.round((data.list[i].hrshbreak * 100) / hrshbreaksum));
+        var indvhrshtrnpercent = (Math.round((data.list[i].hrshturn * 100) / hrshturnsum));
 
-            // "datasets":[{"label":assets[0],"data":[65,59,80,81,56,55,40],"fill":false,"lineTension":0}                
 
         if (data.list[i].hrshbreak <= goal) {
           var hrshcheck = "success";
@@ -114,29 +110,52 @@ $(document).ready(function () {
         } else {
           var redchk3 = "success";
         }
+        var score=data.list[i].hrshturn+data.list[i].idle+data.list[i].rapidacell+data.list[i].hrshbreak+data.list[i].Speeding;
+        // console.log('added score',score);
 
+        var Inputscore=Math.round((score/data.list[i].mileage)*100*-1+100);
+        // console.log('input score',Inputscore);
+
+        if(Inputscore<70){
+          var grade="FScore";
+        }else if(Inputscore > 70 && Inputscore < 80){
+          var grade="CScore";
+        }else if(Inputscore > 80 && Inputscore < 90){
+          var grade="BScore";
+        }else if(Inputscore > 80 &&Inputscore <=100){
+          var grade="AScore";
+        }
+
+        if(isNaN(Inputscore)){
+          Inputscore="";}
         var row =
           '<tr class="  d-flex">' +
-          '<td class="surveyQuestion col-2 ' + header + '">' + data.list[i].vehicle + "</td>" + 
-          '<td class=" col-1 ' + header + '">' + data.list[i].mileage + "</td>" + 
-
-          '<td class="col-3 ' + header +'">' + '<ul id="progress" class="progress   "><li style=" width:20% " class="bar bar0 ">' + indvhrshtrnpercent + '%<li style=" width:20% " class="bar bar2">' + indvidlepercent + '%<li style=" width:20% " class="bar bar3">' + indvrapidaccpercent + '%<li style=" width:20% " class="bar bar4">' + indvhrshbreakpercent + '%<li style=" width:20%" class="bar bar5">' + indvspeedpercent + "% </ul>" + "</td>" +
-          '<td class="' + redchk0 + " col-1 " + header + '">' + "Inputscore" + "</td>" +
+          '<td class="surveyQuestion col-2 ' + header + '">' + data.list[i].vehicle + "</td>" +
+          '<td class=" col-1 ' + header + '">' + data.list[i].mileage + "</td>" +
+          '<td class="col-3 ' + header + '">' + '<ul id="progress" class="progress   "><li style=" width:20% " class="bar bar0 ">' + indvhrshtrnpercent + '%<li style=" width:20% " class="bar bar2">' + indvidlepercent + '%<li style=" width:20% " class="bar bar3">' + indvrapidaccpercent + '%<li style=" width:20% " class="bar bar4">' + indvhrshbreakpercent + '%<li style=" width:20%" class="bar bar5">' + indvspeedpercent + "% </ul>" + "</td>" +
           '<td class="' + redchk2 + " col-1 " + header + '">' + data.list[i].hrshturn + "</td>" +
           '<td class="' + redchk3 + " col-1 " + header + '">' + data.list[i].idle + "</td>" +
           '<td class="' + redchk1 + " col-1 " + header + '">' + data.list[i].rapidacell + "</td>" +
           '<td class="' + " col-1 " + header + '">' + data.list[i].hrshbreak + "</td>" +
-          '<td class="' + redchk3 + " col-1 " + header + '">' + data.list[i].Speeding + "</td>" + "</tr>";
+          '<td class="' + redchk3 + " col-1 " + header + '">' + data.list[i].Speeding + "</td>" +
+          '<td class="' + grade + " col-1 " + header + '">' + Inputscore+ "%" + "</td>" 
+          + "</tr>"
+          ;
         $("table").append(row);
         i++;
       });
 
-      
-      $('#activevehicles').text(activeVehicles+" of "+mileageTotal.length )
 
- 
-     
+      $('#activevehicles').text(activeVehicles + " of " + mileageTotal.length)
+
+
+
       $('#milesdriven').text(mileagesum);
+      var count = ($('.AScore').length + $('.BScore').length + $('.CScore').length);
+      console.log("Total Score",count);
+      $('#withingoal').text(count);
+      $('#outsidegoal').text(activeVehicles-count);
+
 
       var pieTotal = (Idlesum + speedingsum + rapidacellsum + hrshbreaksum + hrshturnsum); //calculates the Pie total in order to get all values to 100% of the pie or doughnut.
       var idlepercent = (Math.round((Idlesum * 100) / pieTotal));
@@ -179,9 +198,9 @@ $(document).ready(function () {
           maintainAspectRatio: false,
 
           responsive: true,
-				legend: {
-					position: 'bottom',
-				},
+          legend: {
+            position: 'bottom',
+          },
 
           title: {
             display: true,
@@ -190,10 +209,10 @@ $(document).ready(function () {
         }
       });
 
-    
-// console.log("Idlesum",Idlesum)
-// console.log("idleTotal",idleTotal)
-console.log(datasets);
+
+      // console.log("Idlesum",Idlesum)
+      // console.log("idleTotal",idleTotal)
+      // console.log(datasets);
       var ctx = document.getElementById("myChart").getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'bar',
@@ -211,23 +230,17 @@ console.log(datasets);
               hrshbreaksum,
               speedingsum],
 
-            backgroundColor:[
+            backgroundColor: [
               "#3e95cd",
               "#c45850",
               "#3cba9f",
               "#e8c3b9",
               "#8e5ea2"
-              
+
             ],//can be an array of colors per each bar or one to rule them all.
-            borderColor:
-              'rgba(1,125,132)'
-            ,
-            borderWidth: 1
-          },
-        
-        
-        
-        ]
+            borderColor:'rgba(1,125,132)',
+            borderWidth: 1},
+          ]
         },
         options: {
           maintainAspectRatio: false,
@@ -248,7 +261,7 @@ console.log(datasets);
         }
 
       });
-      var myChart2= new Chart(document.getElementById("area-chart"), {
+      var myChart2 = new Chart(document.getElementById("area-chart"), {
         type: 'line',
 
         data: {
@@ -257,20 +270,28 @@ console.log(datasets);
             "Rapid start",
             "Sudden Stop",
             "Speeding"],
-            "datasets":datasets,
-            // "datasets":[{"label":assets[0],"data":[65,59,80,81,56,55,40],"fill":false,"lineTension":0}                
-            
-        }
-    })
+          "datasets": datasets,
+          // "datasets":[{"label":assets[0],"data":[65,59,80,81,56,55,40],"fill":false,"lineTension":0}                
+
+        },
+        options: {
+          maintainAspectRatio: true,
+          responsive: true,
+          legend: {
+            position: 'bottom',
+          },
+}
+        
+      })
     }
 
 
-
+ 
 
   );//end of the Get Json
   function add(a, b) {
     return a + b;
-}
+  }
 
 });
 
