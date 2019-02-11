@@ -19,7 +19,7 @@
 
 <body>
     <h2 class=" ml-5 pl-5 py-5  ">Driver Scorecard</h2>
-   
+    <div id="wait" style="display:block;z-index: 4; width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src='assets/loading.gif' width="64" height="64" /><br>Loading..</div>
     
     <div class=" w-75 text-center mx-auto">
          
@@ -28,7 +28,7 @@
                   <div class="card-holder px-3 py-3">
                       <div class="card-body  ">
                           <h6 class="card-title  text-center"> Active Vehicles:</h6>
-                          <h3 id="activevehicles" class="card-text  text-center">#</h3>
+                          <h3 id="activevehicles" class="card-text  text-center"></h3>
 
                       </div>
                   </div>
@@ -46,7 +46,7 @@
                   <div class="card-holder px-3 py-3">
                       <div class="card-body  ">
                           <h6 class="card-title  text-center"> Vehicles within Goal:</h6>
-                          <h3 class="card-text success text-center" id="withingoal">#</h3>
+                          <h3 class="card-text success text-center" id="withingoal"></h3>
 
                       </div>
                   </div>
@@ -55,7 +55,7 @@
                   <div class="card-holder px-3 py-3">
                       <div class="card-body  ">
                           <h6 class="card-title  text-center">Vehicles below Goal:</h6>
-                          <h3 class="card-text danger text-center " id="outsidegoal">#</h3>
+                          <h3 class="card-text danger text-center " id="outsidegoal"></h3>
 
                       </div>
                   </div>
