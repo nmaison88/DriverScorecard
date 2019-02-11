@@ -2,6 +2,12 @@
 $(document).ready(function () {
   console.log("ready!");
 
+  $(document).ajaxStart(function(){
+    $("#wait").css("display", "block");
+  });
+  $(document).ajaxComplete(function(){
+    $("#wait").css("display", "none");
+  });
  
   var database = [];
   // console.log("get ajax");
@@ -150,7 +156,7 @@ $(document).ready(function () {
       // Populate the table after grabbing the json data and parsing
       $('#table').DataTable({
         "paging": true,
-        "searching": false,
+        "searching": true,
         "lengthChange": false,
         "ordering": true,
         "info": false,
