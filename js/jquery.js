@@ -117,7 +117,8 @@ $(document).ready(function () {
 
         var Inputscore=Math.round((score/data.list[i].mileage)*100*-1+100);
         // console.log('input score',Inputscore);
-
+        if(isNaN(Inputscore)){
+          Inputscore="100";}
         if(Inputscore<70){
           var grade="FScore";
         }else if(Inputscore > 70 && Inputscore < 80){
@@ -128,8 +129,7 @@ $(document).ready(function () {
           var grade="AScore";
         }
 
-        if(isNaN(Inputscore)){
-          Inputscore="";}
+       
         var row =
           '<tr class="  d-flex">' +
           '<td class="surveyQuestion col-2 ' + header + '">' + data.list[i].vehicle + "</td>" +
@@ -150,8 +150,8 @@ $(document).ready(function () {
       // Populate the table after grabbing the json data and parsing
       $('#table').DataTable({
         "paging": true,
-        "searching": true,
-        "lengthChange": true,
+        "searching": false,
+        "lengthChange": false,
         "ordering": true,
         "info": false,
         "autoWidth": true,
@@ -161,7 +161,7 @@ $(document).ready(function () {
     
 
 
-      $('#activevehicles').text(activeVehicles + " of " + mileageTotal.length)
+      $('#activevehicles').text(activeVehicles + "/" + mileageTotal.length)
       $('label').addClass("mx-auto").css("font-size","1.2em");
 
 
@@ -171,7 +171,9 @@ $(document).ready(function () {
       var count = ($('.AScore').length + $('.BScore').length + $('.CScore').length);
       console.log("Total Score",count);
       $('#withingoal').text(count);
-      $('#outsidegoal').text(activeVehicles-count);
+      $('#outsidegoal').text( $('.FScore').length);
+
+      // console.log("F score", $('.FScore'));
 
 
       var pieTotal = (Idlesum + speedingsum + rapidacellsum + hrshbreaksum + hrshturnsum); //calculates the Pie total in order to get all values to 100% of the pie or doughnut.
@@ -216,7 +218,7 @@ $(document).ready(function () {
 
           responsive: true,
           legend: {
-            position: 'bottom',
+            position: 'bottom',display:false
           },
 
           title: {
@@ -230,55 +232,55 @@ $(document).ready(function () {
       // console.log("Idlesum",Idlesum)
       // console.log("idleTotal",idleTotal)
       // console.log(datasets);
-      var ctx = document.getElementById("myChart").getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ["Total Idle",
-            "Total hard corner",
-            "Total Rapid start",
-            "Total Sudden Stop",
-            "Total Speeding"],
-          datasets: [{
-            label: 'Total # of Infractions',
-            data: [Idlesum,
-              hrshturnsum,
-              rapidacellsum,
-              hrshbreaksum,
-              speedingsum],
+      // var ctx = document.getElementById("myChart").getContext('2d');
+      // var myChart = new Chart(ctx, {
+      //   type: 'bar',
+      //   data: {
+      //     labels: ["Total Idle",
+      //       "Total hard corner",
+      //       "Total Rapid start",
+      //       "Total Sudden Stop",
+      //       "Total Speeding"],
+      //     datasets: [{
+      //       label: 'Total # of Infractions',
+      //       data: [Idlesum,
+      //         hrshturnsum,
+      //         rapidacellsum,
+      //         hrshbreaksum,
+      //         speedingsum],
 
-            backgroundColor: [
-              "#3e95cd",
-              "#c45850",
-              "#3cba9f",
-              "#e8c3b9",
-              "#8e5ea2"
+      //       backgroundColor: [
+      //         "#3e95cd",
+      //         "#c45850",
+      //         "#3cba9f",
+      //         "#e8c3b9",
+      //         "#8e5ea2"
 
-            ],//can be an array of colors per each bar or one to rule them all.
-            borderColor: 'rgba(1,125,132)',
-            borderWidth: 1
-          },
-          ]
-        },
-        options: {
-          maintainAspectRatio: false,
-          scales: {
-          yAxes: [{
-              stacked: true,
-              gridLines: {
-              display: true,
-              color: "rgba(255,99,132,0.2)"
-              }
-            }],
-            xAxes: [{
-              gridLines: {
-                display: false
-              }
-            }]
-          }
-        }
+      //       ],//can be an array of colors per each bar or one to rule them all.
+      //       borderColor: 'rgba(1,125,132)',
+      //       borderWidth: 1
+      //     },
+      //     ]
+      //   },
+      //   options: {
+      //     maintainAspectRatio: false,
+      //     scales: {
+      //     yAxes: [{
+      //         stacked: true,
+      //         gridLines: {
+      //         display: true,
+      //         color: "rgba(255,99,132,0.2)"
+      //         }
+      //       }],
+      //       xAxes: [{
+      //         gridLines: {
+      //           display: false
+      //         }
+      //       }]
+      //     }
+      //   }
 
-      });
+      // });
       var myChart2 = new Chart(document.getElementById("area-chart"), {
         type: 'line',
         data: {
@@ -290,7 +292,7 @@ $(document).ready(function () {
             "datasets": datasets,
         },
         options: {
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
           responsive: true,
           legend: {
           position: 'bottom',

@@ -1,6 +1,7 @@
 body {
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 11px;
+  background: rgb(250, 250, 250);
 }
 
 .container-fluid {
@@ -20,10 +21,16 @@ body {
   width: 100px;
   height: auto;
 }
+table{
+  border:1px solid rgba(0,0,0,.125);
 
+}
 td {
   text-align: center;
+  margin: auto;
 }
+li{margin: auto!important;
+  text-align: center;}
 
 th {
   /* font-size: .8rem; */
@@ -45,7 +52,7 @@ th {
 }
 
 .bar {
-  margin: 0;
+  margin: auto;
   padding: 0;
   height: 30px;
   display: inline-block;
@@ -102,20 +109,39 @@ th {
 section {
   margin-top: 10px;
 }
+.card-holder{
+background: white;
+min-height: 15VH;
+border:1px solid rgba(0,0,0,.125);
+
+}
 
 .chart-container {
   /* position: relative; */
-  display: inline-block;
+  display: block;
   margin: auto;
   height: 25vh;
   width: 25vw;
+  /* padding: 20px; */
 }
 .chart {
   display: inline-block;
   margin: auto;
-  height: 25vh;
-  width: 25vw;
+  height: 40vh;
+  width: 20vw;
+  /* padding: 20px; */
+
 }
+
+.chartArea {
+  display: inline-block;
+  /* margin: auto; */
+  height: 40vh;
+  width: 40vw;
+  /* padding: 20px; */
+
+}
+
 .bar:hover,
 .bar2:hover,
 .bar3:hover,
@@ -133,14 +159,14 @@ section {
   body {
     font-size: 0.6em;
   }
-  .card {
+  /* .card {
     font-size: 0.6em !important;
     width: 100%;
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 10px; /* Added */
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px; 
     justify-content: center;
-  }
+  } */
   /* table{
 color:red;
 max-width: 10vw;
@@ -152,19 +178,19 @@ max-width: 10vw;
     padding: 0;
     font-size: 0.6em;
   }
-  .card {
+  /* .card {
     font-size: 0.6em !important;
     height: 100%;
-  }
+  } */
 }
 
 @media only screen and (max-width: 1440px) {
   body {
     font-size: 0.6em;
   }
-  .card {
+  /* .card {
     font-size: 0.6em !important;
     height: 100%;
-  }
+  } */
 }
 

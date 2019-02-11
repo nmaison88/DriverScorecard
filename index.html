@@ -18,42 +18,45 @@
   
 
 <body>
-    <h1 class=" ml-5 pl-5 py-5  ">Driver Scorecard</h1>
+    <h2 class=" ml-5 pl-5 py-5  ">Driver Scorecard</h2>
    
     
     <div class=" w-75 text-center mx-auto">
          
           <div class="row">
               <div class="col-sm-3 ">
-                  <div class="card ">
+                  <div class="card-holder px-3 py-3">
                       <div class="card-body  ">
-                          <h6 class="card-title text-nowrap text-center"> Active Vehicles:</h6><small>this month</small>
-                          <h6 id="activevehicles" class="card-text  text-center">#</h6>
+                          <h6 class="card-title  text-center"> Active Vehicles:</h6>
+                          <h3 id="activevehicles" class="card-text  text-center">#</h3>
+
                       </div>
                   </div>
               </div>
               <div class="col-sm-3 ">
-                  <div class="card ">
+                  <div class="card-holder px-3 py-3">
                       <div class="card-body  ">
-                          <h6 class="card-title text-nowrap text-center">
-                              Miles Driven:</h6><small>this month</small>
-                          <h6 class="card-text  text-center" id="milesdriven">something here</h6>
+                          <h6 class="card-title  text-center">
+                              Total Miles Driven:</h6>
+                          <h3 class="card-text  text-center" id="milesdriven"></h3>
                       </div>
                   </div>
               </div>
               <div class="col-sm-3 ">
-                  <div class="card ">
+                  <div class="card-holder px-3 py-3">
                       <div class="card-body  ">
-                          <h6 class="card-title text-nowrap text-center"> Vehicles within Goal:</h6><small>this month</small>
-                          <h6 class="card-text AScore text-center" id="withingoal">#</h6>
+                          <h6 class="card-title  text-center"> Vehicles within Goal:</h6>
+                          <h3 class="card-text success text-center" id="withingoal">#</h3>
+
                       </div>
                   </div>
               </div>
               <div class="col-sm-3 ">
-                  <div class="card ">
+                  <div class="card-holder px-3 py-3">
                       <div class="card-body  ">
-                          <h6 class="card-title text-nowrap text-center">Vehicles below Goal:</h6><small>this month</small>
-                          <h6 class="card-text FScore text-center " id="outsidegoal">#</h6>
+                          <h6 class="card-title  text-center">Vehicles below Goal:</h6>
+                          <h3 class="card-text danger text-center " id="outsidegoal">#</h3>
+
                       </div>
                   </div>
               </div>
@@ -61,18 +64,19 @@
 
           </div>
       </div>
-      <div class="text-center mb-3">
-        <div class="chart-container mt-3 ">
+      <div class="text-center mb-3 w-75 mx-auto">
+            <!-- <div class="card chart-container px-3 py-3 my-3 mx-3 text-dark">
+
+                    <canvas class="" id="myChart" ></canvas>
+                    </div> -->
+        <div class=" card chart px-3 py-3 my-3 mx-3 ">
 
             <canvas class="" id="doughnut-chart"  ></canvas>
             </div>
 
-        <div class="chart-container mt-3 text-dark">
-
-        <canvas class="" id="myChart" ></canvas>
-        </div>
-        <div class="chart-container mt-3 text-dark">
-            <canvas class="chart" id="area-chart" ></canvas>
+       
+        <div class="card chartArea px-3 py-3 my-3 mx-3 text-dark">
+            <canvas class="" id="area-chart" ></canvas>
 
             </div>
     
@@ -82,30 +86,30 @@
     <table id="table" class="  table-responsive{-sm|-md|-lg|-xl} table-striped w-75 mx-auto  ">
       <thead>
         <tr>
-            <th class=" text-center align-middle"><h4>Fleet Stats Overview</h4>
+            <th class=" text-center align-middle"><h2>Fleet Stats Overview</h2>
               <div class="container-fluid ">
                   
 
         </tr>
-        <tr class="d-flex">
-          <th class="col-2 text-center align-middle"><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Label</div>
+        <tr class="d-flex ">
+          <th class="col-2 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Label</div>
           </th>
-          <th class="col-1 text-center align-middle"><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Miles Driven </div>
+          <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Miles Driven </div>
           </th>
-          <th class="text-center  align-middle col-3 "><i class="far fa-chart-bar fa-3x main-color-bg"></i><div>Statistics<br><small>Company % Impact</small></div>
+          <th class="text-center   col-3 "><i class="far fa-chart-bar fa-3x main-color-bg"></i><div>Statistics<br><small>Company % Impact</small></div>
           </th>
 
-          <th class="text-center  align-middle col-1 "><i class="fas fa-car-crash fa-3x icn main-color-bg"></i><div>Harsh turn Events</div>
+          <th class="text-center   col-1 "><i class="fas fa-car-crash fa-3x icn main-color-bg"></i><div>Harsh turn Events</div>
           </th>
-          <th class="text-center  align-middle col-1"><i class="fas fa-gas-pump fa-3x icn main-color-bg"></i><div>Idle Events</div>
+          <th class="text-center   col-1"><i class="fas fa-gas-pump fa-3x icn main-color-bg"></i><div>Idle Events</div>
           </th>
-          <th class="text-center  align-middle col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Accel Events</div>
+          <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Accel Events</div>
           </th>
-          <th class="text-center  align-middle col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Deccel Events</div>
+          <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Deccel Events</div>
           </th>
-          <th class="text-center  align-middle col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Speeding Events</div>
+          <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Speeding Events</div>
           </th>
-          <th class="text-center  align-middle col-1 "><i class="fas fa-clipboard-list  fa-3x main-color-bg"></i><div>Score<br><small>% of Goal</small></div>
+          <th class="text-center   col-1 "><i class="fas fa-clipboard-list  fa-3x main-color-bg"></i><div>Score<br><small>% of Goal</small></div>
           </th>
         </tr>
       </thead>
