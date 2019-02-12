@@ -46,7 +46,7 @@ $(document).ready(function () {
         hrshbreakTotal.push(key.hrshbreak);
         rapidacellTotal.push(key.rapidacell);
         assets.push(key.vehicle);
-        datasets.push({ "label": key.vehicle, borderColor: graphColors[t], backgroundColor: graphColors[t], "data": [key.idle, key.hrshturn, key.rapidacell, key.hrshbreak, key.Speeding], "fill": false, "lineTension": 0 })
+        datasets.push({ "label": key.vehicle,borderWidth:1, borderColor: graphColors[t], backgroundColor: graphColors[t], "data": [key.idle, key.hrshturn, key.rapidacell, key.hrshbreak, key.Speeding], "fill": false, "lineTension": 0 })
         t++;
         // console.log("t:" ,t)
         if (t > graphColors.length) { t = 0; }
@@ -226,7 +226,7 @@ $(document).ready(function () {
 
           responsive: true,
           legend: {
-            position: 'bottom',display:false
+            position: 'bottom',display:true
           },
 
           title: {
@@ -304,6 +304,7 @@ $(document).ready(function () {
           responsive: true,
           legend: {
           position: 'bottom',
+          
           },
         }
 
