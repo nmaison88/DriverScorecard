@@ -96,19 +96,19 @@ th {
 
 .AScore {
   font-size: 1.3em;
-  color: #3cba9f;
+  color: green;
 }
 .BScore {
   font-size: 1.3em;
-  color: #3e95cd;
+  color: blue;
 }
 .CScore {
   font-size: 1.3em;
-  color: #8e5ea2;
+  color: purple;
 }
 .FScore {
   font-size: 1.3em;
-  color: #c45850;
+  color: red;
 }
 
 section {
@@ -136,8 +136,14 @@ section {
   /* padding: 20px; */
 }
 
+th:hover {
+  font-weight: bold;
+  color: black;
+  cursor: ns-resize;
+}
 
-.bar:hover,
+
+/* .bar:hover,
 .bar2:hover,
 .bar3:hover,
 .bar4:hover,
@@ -145,7 +151,7 @@ section {
   font-size: 1.3em;
   font-weight: bold;
   color: black;
-}
+} */
 
 
 .dataTables_wrapper .dataTables_paginate {
@@ -231,7 +237,10 @@ div.dataTables_wrapper div.dataTables_paginate {float:none; text-align:center}
 text-align:center!important;
 margin:10px!important
 }
-
+.dataTables_wrapper .dt-buttons {
+  float:none;  
+  text-align:center;
+}
 @media only screen and (max-width: 425px) {
   body {
     font-size: 0.6em;

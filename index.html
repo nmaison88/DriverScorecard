@@ -12,6 +12,8 @@
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
   <!-- Custom CSS -->
   <link href="css/style.css" rel="stylesheet">
   
@@ -19,7 +21,7 @@
 
 <body>
     <h2 class=" ml-5 pl-5 py-5  ">Driver Scorecard</h2>
-    <div id="wait" style="display:block;z-index: 4; width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src='assets/loading.gif' width="64" height="64" /><br>Loading..</div>
+    <div id="wait" style="display:none;z-index: 4; width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src='assets/loading.gif' width="64" height="64" /><br>Loading..</div>
     
     <div class=" w-75 text-center mx-auto">
          
@@ -83,7 +85,7 @@
        
 
           </div>
-    <table id="table" class="  table-responsive{-sm|-md|-lg|-xl} table-striped w-75 mx-auto  ">
+    <table id="table" data-order='[[ 0, "asc" ]]' data-page-length='25' class="  table-responsive{-sm|-md|-lg|-xl} table-striped w-75 mx-auto  ">
       <thead>
         <tr>
             <th class=" text-center align-middle"><h2>Fleet Stats Overview</h2>
@@ -120,19 +122,25 @@
    
 
   </div>
+  
   <!-- added jquery cdn -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- adding in charting cdn -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
-     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-   <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+    <!-- adding in charting cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+  
+    <!-- datatables script -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"  src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+   
+    <script type="text/javascript" charset="utf8"  src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script> -->
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 
-  <!-- custom js script -->
-  <script src="js/jquery.js"></script>
-
-   <!-- datatables script -->
-   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
+    <!-- custom js script -->
+    <script src="js/jquery.js"></script>
 </body>
 
 </html>

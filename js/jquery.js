@@ -12,7 +12,8 @@ $(document).ready(function () {
   var database = [];
   // console.log("get ajax");
   $.get(
-    "https://api.myjson.com/bins/1a9s0o",
+    // "https://api.myjson.com/bins/1a9s0o",
+    'https://api.myjson.com/bins/aor4m',
     function (data) {
       $(".result").html(data);
       database = data;
@@ -155,20 +156,21 @@ $(document).ready(function () {
       });
       // Populate the table after grabbing the json data and parsing
       $('#table').DataTable({
-        "paging": true,
-        "searching": true,
-        "lengthChange": false,
-        "ordering": true,
-        "info": false,
-        "autoWidth": true,
-        "sDom": 'lfrtip',
-        // "sPaginationType": "full_numbers"
+        paging: true,
+        searching: true,
+        lengthChange: false,
+        ordering: true,
+        info: true,
+        autoWidth: true,
+        dom: 'lfrtipB',
+        buttons: [
+          { extend: 'csv', text: 'Export csv' }        ],
+        sPaginationType: "numbers"
     });
-    
-
-
+  
       $('#activevehicles').text(activeVehicles + "/" + mileageTotal.length)
       $('label').addClass("mx-auto").css("font-size","1.2em");
+      // $('.dt-buttons').addClass("CSV").css("background","red");
 
 
 
