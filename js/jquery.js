@@ -140,7 +140,7 @@ $(document).ready(function () {
         var row =
           '<tr class="  d-flex">' +
           '<td class="surveyQuestion col-2 ' + header + '">' + data.list[i].vehicle + "</td>" +
-          '<td class=" col-1 ' + header + '">' + data.list[i].mileage + "</td>" +
+          '<td class=" col-1 ' + header + '">' + data.list[i].mileage.toLocaleString() + "</td>" +
           '<td class="col-3 ' + header + '">' + '<ul id="progress" class="progress   "><li style=" width:20% " class="bar bar0 ">' + indvhrshtrnpercent + '%<li style=" width:20% " class="bar bar2">' + indvidlepercent + '%<li style=" width:20% " class="bar bar3">' + indvrapidaccpercent + '%<li style=" width:20% " class="bar bar4">' + indvhrshbreakpercent + '%<li style=" width:20%" class="bar bar5">' + indvspeedpercent + "% </ul>" + "</td>" +
           '<td class="' + redchk2 + " col-1 " + header + '">' + data.list[i].hrshturn + "</td>" +
           '<td class="' + redchk3 + " col-1 " + header + '">' + data.list[i].idle + "</td>" +
@@ -175,7 +175,7 @@ $(document).ready(function () {
 
 
 
-      $('#milesdriven').text(mileagesum);
+      $('#milesdriven').text(mileagesum.toLocaleString());
       var count = ($('.AScore').length + $('.BScore').length + $('.CScore').length);
       console.log("Total Score",count);
       $('#withingoal').text(count);
