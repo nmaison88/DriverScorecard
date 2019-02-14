@@ -138,7 +138,7 @@ section {
 
 th:hover {
   font-weight: bold;
-  color: black;
+  color: rgb(172, 163, 163);
   cursor: ns-resize;
 }
 

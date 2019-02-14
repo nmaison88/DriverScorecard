@@ -12,8 +12,9 @@ $(document).ready(function () {
   var database = [];
   // console.log("get ajax");
   $.get(
-    // "https://api.myjson.com/bins/1a9s0o",
-    'https://api.myjson.com/bins/aor4m',
+    // "https://api.myjson.com/bins/1a9s0o", 
+    'https://api.myjson.com/bins/aor4m', //14 records
+    // 'https://api.myjson.com/bins/zxsfq', //large records
     function (data) {
       $(".result").html(data);
       database = data;
@@ -147,7 +148,7 @@ $(document).ready(function () {
           '<td class="' + redchk1 + " col-1 " + header + '">' + data.list[i].rapidacell + "</td>" +
           '<td class="' + " col-1 " + header + '">' + data.list[i].hrshbreak + "</td>" +
           '<td class="' + redchk3 + " col-1 " + header + '">' + data.list[i].Speeding + "</td>" +
-          '<td class="' + grade + " col-1 " + header + '">' + Inputscore+  "</td>" 
+          '<td class="' + grade + " col-1 " + header + '">' + Inputscore+ "<span>%</span></td>" 
           + "</tr>"
           ;
         $("table").append(row);
