@@ -17,10 +17,31 @@
   <!-- Custom CSS -->
   <link href="css/style.css" rel="stylesheet">
   
+  <style>
   
+  .bordered{
+    border:1px solid #000000;
+  }
+  #GroupViewContainer{
+      display: none;
+  }
+  #OverviewContainer{
+      display: block;
+  }
+  #VehicleViewContainer{
+      display: none;
+  } 
+  </style>
 
 <body>
-    <h2 class=" ml-5 pl-5 py-5  ">Driver Scorecard</h2>
+        <nav class="nav">
+                <a id="Overview" class="nav-link active" href="#">Overview</a>
+                <a id="GroupView" class="nav-link" href="#">Group View</a>
+                <a id="VehicleView" class="nav-link" href="#">Vehicle View</a>
+              </nav>
+
+    <section id="OverViewContainer" >
+            <h2 class=" ml-5 pl-5 py-5  "> Overview</h2>
     <div id="wait" style="display:none;z-index: 4; width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;"><img src='assets/loading.gif' width="64" height="64" /><br>Loading..</div>
     
     <div class=" w-75 text-center mx-auto">
@@ -67,10 +88,7 @@
           </div>
       </div>
       <div id="chart-container" class="text-center mb-3  mx-auto">
-            <!-- <div class="card  px-3 py-3 my-3 mx-3 text-dark">
-
-                    <canvas class="" id="myChart" ></canvas>
-                    </div> -->
+         
         <div id="doughnutDiv" class=" card chart px-3 py-3 my-3 mx-3 ">
 
             <canvas class="" id="doughnut-chart"  ></canvas>
@@ -85,6 +103,105 @@
        
 
           </div>
+
+
+
+
+    </section>
+
+    <section id="GroupViewContainer" >
+        <h2 class=" ml-5 pl-5 py-5  ">Group Scorecard</h2>
+        <div class=" w-75 text-center mx-auto">
+         
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <div class="card-holder px-3 py-3">
+                            <div class="card-body  ">
+                                    <canvas class="" id="myChart"></canvas>
+
+      
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="card-holder px-3 py-3">
+                            <div class="card-body  ">
+                                    <canvas class="" id="myChartsecond"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="card-holder px-3 py-3">
+                            <div class="card-body  ">
+                                    <canvas class="" id="myChartthird"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="card-holder px-3 py-3">
+                            <div class="card-body  ">
+
+                                    <canvas class="" id="mychartfourth"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+      
+      
+                </div>
+            </div>
+            <div class="dropdown">
+                <select id="GroupDropdown" class="btn dropdown">
+                    <option selected disabled>Choose Group</option>
+
+                  
+                  </select>
+                  
+              </div>
+     <table id="Grouptable" data-order='[[ 0, "asc" ]]' data-page-length='25' class="  table-responsive{-sm|-md|-lg|-xl} table-striped w-75 mx-auto  ">
+      <thead>
+        <tr>
+            <th class=" text-center align-middle"><h2>Group Stats Overview</h2>
+              <div class="container-fluid ">
+                  
+
+        </tr>
+        <tr class="d-flex ">
+          <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Label</div>
+          </th>
+          <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Group</div>
+          </th>
+
+          <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Miles Driven </div>
+          </th>
+          <th class="text-center   col-3 "><i class="far fa-chart-bar fa-3x main-color-bg"></i><div>Statistics<br><small>Company neg Impact</small></div>
+          </th>
+
+          <th class="text-center   col-1 "><i class="fas fa-car-crash fa-3x icn main-color-bg"></i><div>Harsh turn Events</div>
+          </th>
+          <th class="text-center   col-1"><i class="fas fa-gas-pump fa-3x icn main-color-bg"></i><div>Idle Events</div>
+          </th>
+          <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Accel Events</div>
+          </th>
+          <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Deccel Events</div>
+          </th>
+          <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Speeding Events</div>
+          </th>
+          <th class="text-center   col-1 "><i class="fas fa-clipboard-list  fa-3x main-color-bg"></i><div>Score<br><small>% of Goal</small></div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    </section>
+
+
+    <section id="VehicleViewContainer">
+
     <table id="table" data-order='[[ 0, "asc" ]]' data-page-length='25' class="  table-responsive{-sm|-md|-lg|-xl} table-striped w-75 mx-auto  ">
       <thead>
         <tr>
@@ -94,8 +211,11 @@
 
         </tr>
         <tr class="d-flex ">
-          <th class="col-2 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Label</div>
+          <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Label</div>
           </th>
+          <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Group</div>
+          </th>
+
           <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Miles Driven </div>
           </th>
           <th class="text-center   col-3 "><i class="far fa-chart-bar fa-3x main-color-bg"></i><div>Statistics<br><small>Company neg Impact</small></div>
@@ -122,7 +242,7 @@
    
 
   </div>
-  
+</section>
   <!-- added jquery cdn -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
