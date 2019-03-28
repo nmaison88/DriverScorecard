@@ -611,6 +611,8 @@ $('select').change(function() {
     buttons: [{ extend: "csv", text: "Export csv" }],
     sPaginationType: "numbers"
   }).destroy();
+  $( ".groupTable" ).remove();
+
 
     var compareGroup=$(this).val();
     console.log('compareGroup',compareGroup);
@@ -688,10 +690,9 @@ $('select').change(function() {
     }
     
 
-// if (database.list[i].group ===compareGroup){
-  // console.log('Filtering');
+
     var row =
-      '<tr class="  d-flex">' +
+      '<tr class=" groupTable d-flex">' +
       '<td class="surveyQuestion col-1 ' +
       header +
       '">' +
@@ -767,7 +768,7 @@ $('select').change(function() {
     $("#Grouptable").append(row);
 
     
-// }
+
 i++;
   });
 
