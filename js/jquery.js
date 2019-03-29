@@ -38,6 +38,11 @@ var graphColors = [
   "rgba(40,255,255,0.8)",
   "rgba(100,15,18,0.8)"
 ];
+var aScore=0;
+var bScore=0;
+var cScore=0;
+var fScore=0;
+
 $(document).ready(function() {
   // console.log("ready!");
 
@@ -49,7 +54,8 @@ $(document).ready(function() {
   });
 
   $.get(
-    "https://api.myjson.com/bins/quch2", //with better names
+    // "https://api.myjson.com/bins/quch2", //with better names
+    'https://api.myjson.com/bins/1eh66i',
     // 'https://api.myjson.com/bins/zxsfq', //large records but no groups
     function(data) {
       $(".result").html(data);
@@ -137,12 +143,12 @@ console.log(data)
     var dropdownItems='<option value="'+ element + '">'+ element +'</option>' ;
     $('#GroupDropdown').append(dropdownItems)
   })
-      var count =
-        $(".AScore").length + $(".BScore").length + $(".CScore").length;
+      var count = aScore + bScore + cScore;
       $("#withingoal").text(count);
-      $("#outsidegoal").text($(".FScore").length);
+      $("#outsidegoal").text(fScore);
     }
   );
+  bestPerformers();
 }); //end of the Get Json
 
 $("#GroupView").click(() => {
@@ -184,15 +190,14 @@ graph = () => {
     type: "doughnut",
     data: {
       labels: [
-        "Idle",
-        "Speeding",
-        "rapid acelleration",
-        "Sudden Stop",
-        "Hard Cornering"
+        "% Idle",
+        "% Speeding",
+         "% rapid acelleration",
+        "% Sudden Stop",
+        "% Hard Cornering"
       ],
       datasets: [
         {
-          label: "Population (millions)",
           backgroundColor: [
             "#3e95cd",
             "#8e5ea2",
@@ -225,13 +230,38 @@ graph = () => {
       }
     }
   });
+  var idleAverage = Math.round(Idlesum / mileageTotal.length);
+  var speedingAverage = Math.round(speedingsum / mileageTotal.length);
+  var rapidAcellAverage = Math.round(rapidacellsum / mileageTotal.length);
+  var hrshBreakAverage = Math.round(hrshbreaksum / mileageTotal.length);
+  var hrshTrnAverage = Math.round(hrshturnsum / mileageTotal.length);
+  
+
   new Chart(document.getElementById("area-chart"), {
     type: "bar",
     data: {
       labels: ["Idle", "hard corner", "Rapid start", "Sudden Stop", "Speeding"],
-      datasets: datasets
+      datasets: [
+        {
+          
+          backgroundColor: [
+            "#3e95cd",
+            "#8e5ea2",
+            "#3cba9f",
+            "#e8c3b9",
+            "#c45850"
+          ],
+          data: [idleAverage,hrshTrnAverage,rapidAcellAverage,hrshBreakAverage,speedingAverage
+          
+          ]
+        }
+      ]
     },
     options: {
+      title: {
+        display: true,
+        text: "Averages"
+      },
       maintainAspectRatio: false,
       responsive: true,
       legend: {
@@ -240,6 +270,7 @@ graph = () => {
       }
     }
   });
+ 
 };
 Groupgraph = () => {
   new Chart(document.getElementById("mychartfourth"), {
@@ -498,12 +529,19 @@ tableMaker = () => {
     }
     if (Inputscore < 70) {
       var grade = "FScore";
-    } else if (Inputscore > 70 && Inputscore < 80) {
+      fScore++;
+
+    } else if (Inputscore >= 70 && Inputscore < 80) {
       var grade = "CScore";
-    } else if (Inputscore > 80 && Inputscore < 90) {
+      cScore++;
+
+    } else if (Inputscore >= 80 && Inputscore < 90) {
       var grade = "BScore";
-    } else if (Inputscore > 80 && Inputscore <= 100) {
+      bScore++;
+
+    } else if (Inputscore >= 90 && Inputscore <= 100) {
       var grade = "AScore";
+      aScore++;
     }
 
     var row =
@@ -615,7 +653,7 @@ $('select').change(function() {
 
 
     var compareGroup=$(this).val();
-    console.log('compareGroup',compareGroup);
+    // console.log('compareGroup',compareGroup);
     
     var i = 0;
   Object.keys(database.list).forEach(function(key) {
@@ -681,11 +719,11 @@ $('select').change(function() {
     }
     if (Inputscore < 70) {
       var grade = "FScore";
-    } else if (Inputscore > 70 && Inputscore < 80) {
+    } else if (Inputscore >= 70 && Inputscore < 80) {
       var grade = "CScore";
-    } else if (Inputscore > 80 && Inputscore < 90) {
+    } else if (Inputscore >= 80 && Inputscore < 90) {
       var grade = "BScore";
-    } else if (Inputscore > 80 && Inputscore <= 100) {
+    } else if (Inputscore >= 90 && Inputscore <= 100) {
       var grade = "AScore";
     }
     
@@ -790,3 +828,176 @@ i++;
 
 
 });
+
+
+bestPerformers=()=>{
+
+  var i = 0;
+  Object.keys(database.list).forEach(function(key) {
+    var indvidlepercent = Math.round((database.list[i].idle * 100) / Idlesum);
+    var indvspeedpercent = Math.round(
+      (database.list[i].Speeding * 100) / speedingsum
+    );
+    var indvrapidaccpercent = Math.round(
+      (database.list[i].rapidacell * 100) / rapidacellsum
+    );
+    var indvhrshbreakpercent = Math.round(
+      (database.list[i].hrshbreak * 100) / hrshbreaksum
+    );
+    var indvhrshtrnpercent = Math.round(
+      (database.list[i].hrshturn * 100) / hrshturnsum
+    );
+
+    if (database.list[i].hrshbreak <= goal) {
+      var hrshcheck = "success";
+    } else {
+      var hrshcheck = "danger";
+    }
+    if (i == 0) {
+    } else {
+      var header = "standard ";
+    }
+
+    if (1 > goal) {
+      var redchk0 = "danger";
+    } else {
+      var redchk0 = "success";
+    }
+
+    if (database.list[i].rapidacell > goal) {
+      var redchk1 = "danger";
+    } else {
+      var redchk1 = "success";
+    }
+    if (database.list[i].hrshturn > goal) {
+      var redchk2 = "danger";
+    } else {
+      var redchk2 = "success";
+    }
+    if (database.list[i].idle > goal) {
+      var redchk3 = "danger";
+    } else {
+      var redchk3 = "success";
+    }
+    var score =
+      database.list[i].hrshturn +
+      database.list[i].idle +
+      database.list[i].rapidacell +
+      database.list[i].hrshbreak +
+      database.list[i].Speeding;
+    // console.log('added score',score);
+
+    var Inputscore = Math.round(
+      (score / database.list[i].mileage) * 100 * -1 + 100
+    );
+    // console.log('input score',Inputscore);
+    if (isNaN(Inputscore)) {
+      Inputscore = "100";
+    }
+    if (Inputscore < 70) {
+      var grade = "FScore";
+    } else if (Inputscore >= 70 && Inputscore < 80) {
+      var grade = "CScore";
+    } else if (Inputscore >= 80 && Inputscore < 90) {
+      var grade = "BScore";
+    } else if (Inputscore >= 90 && Inputscore <= 100) {
+      var grade = "AScore";
+    }
+    
+
+
+    var row =
+      '<tr class=" groupTable d-flex">' +
+      '<td class="surveyQuestion col-1 ' +
+      header +
+      '">' +
+      database.list[i].vehicle +
+      "</td>" +
+      '<td class="surveyQuestion col-1 ' +
+      header +
+      '">' +
+      database.list[i].group +
+      "</td>" +
+      '<td class=" col-1 ' +
+      header +
+      '">' +
+      database.list[i].mileage.toLocaleString() +
+      "</td>" +
+      '<td class="col-3 ' +
+      header +
+      '">' +
+      '<ul id="progress" class="progress   "><li style=" width:20% " class="bar bar0 ">' +
+      indvhrshtrnpercent +
+      '%<li style=" width:20% " class="bar bar2">' +
+      indvidlepercent +
+      '%<li style=" width:20% " class="bar bar3">' +
+      indvrapidaccpercent +
+      '%<li style=" width:20% " class="bar bar4">' +
+      indvhrshbreakpercent +
+      '%<li style=" width:20%" class="bar bar5">' +
+      indvspeedpercent +
+      "% </ul>" +
+      "</td>" +
+      '<td class="' +
+      redchk2 +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].hrshturn +
+      "</td>" +
+      '<td class="' +
+      redchk3 +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].idle +
+      "</td>" +
+      '<td class="' +
+      redchk1 +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].rapidacell +
+      "</td>" +
+      '<td class="' +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].hrshbreak +
+      "</td>" +
+      '<td class="' +
+      redchk3 +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].Speeding +
+      "</td>" +
+      '<td class="' +
+      grade +
+      " col-1 " +
+      header +
+      '">' +
+      Inputscore +
+      "<span>%</span></td>" +
+      "</tr>";
+    $("#TopPerfTable").append(row);
+
+    
+
+i++;
+
+
+$("#TopPerfTable").DataTable({
+  paging: true,
+  searching: true,
+  lengthChange: false,
+  ordering: true,
+  info: true,
+  autoWidth: true,
+  dom: "lfrtipB",
+  buttons: [{ extend: "csv", text: "Export csv" }],
+  sPaginationType: "numbers"
+});
+
+});
+}

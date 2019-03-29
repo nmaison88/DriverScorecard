@@ -87,23 +87,95 @@
 
           </div>
       </div>
-      <div id="chart-container" class="text-center mb-3  mx-auto">
-         
-        <div id="doughnutDiv" class=" card chart px-3 py-3 my-3 mx-3 ">
-
-            <canvas class="" id="doughnut-chart"  ></canvas>
-            </div>
-
-       
-        <div id="AreaDiv" class="card chartArea px-3 py-3 my-3 mx-3 text-dark">
-            <canvas class="" id="area-chart" ></canvas>
-
-            </div>
+    <div id="chart-container" class="text-center mb-3  mx-auto">
     
-       
+        <div id="doughnutDiv" class=" card chart px-3 py-3 my-3 mx-3 ">
+    
+            <canvas class="" id="doughnut-chart"></canvas>
+        </div>
+    
+        <div id="AreaDiv" class="card chartArea px-3 py-3 my-3 mx-3 text-dark">
+            <canvas class="" id="area-chart"></canvas>
+    
+        </div>
+    
+    </div>
+   
+    <table id="TopPerfTable" data-order='[[ 9, "asc" ]]' data-page-length='5' class="  table-responsive{-sm|-md|-lg|-xl} table-striped w-75 mx-auto  ">
+        <thead>
+          <tr>
+              <th class=" text-center align-middle"><h2>Top Performers</h2>
+                <div class="container-fluid ">
+                    
+  
+          </tr>
+          <tr class="d-flex ">
+            <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Label</div>
+            </th>
+            <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Group</div>
+            </th>
+  
+            <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Miles Driven </div>
+            </th>
+            <th class="text-center   col-3 "><i class="far fa-chart-bar fa-3x main-color-bg"></i><div>Statistics<br><small>Company neg Impact</small></div>
+            </th>
+  
+            <th class="text-center   col-1 "><i class="fas fa-car-crash fa-3x icn main-color-bg"></i><div>Harsh turn Events</div>
+            </th>
+            <th class="text-center   col-1"><i class="fas fa-gas-pump fa-3x icn main-color-bg"></i><div>Idle Events</div>
+            </th>
+            <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Accel Events</div>
+            </th>
+            <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Deccel Events</div>
+            </th>
+            <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Speeding Events</div>
+            </th>
+            <th class="text-center   col-1 "><i class="fas fa-clipboard-list  fa-3x main-color-bg"></i><div>Score<br><small>% of Goal</small></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+  
+        </tbody>
+      </table>
 
-          </div>
-
+      <table id="WorstPerfTable" data-order='[[ 9, "desc" ]]' data-page-length='5' class="  table-responsive{-sm|-md|-lg|-xl} table-striped w-75 mx-auto  ">
+        <thead>
+          <tr>
+              <th class=" text-center align-middle"><h2>Worst Performers</h2>
+                <div class="container-fluid ">
+                    
+  
+          </tr>
+          <tr class="d-flex ">
+            <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Label</div>
+            </th>
+            <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Vehicle Group</div>
+            </th>
+  
+            <th class="col-1 text-center "><i class="fas fa-users fa-3x icn main-color-bg"></i><div>Miles Driven </div>
+            </th>
+            <th class="text-center   col-3 "><i class="far fa-chart-bar fa-3x main-color-bg"></i><div>Statistics<br><small>Company neg Impact</small></div>
+            </th>
+  
+            <th class="text-center   col-1 "><i class="fas fa-car-crash fa-3x icn main-color-bg"></i><div>Harsh turn Events</div>
+            </th>
+            <th class="text-center   col-1"><i class="fas fa-gas-pump fa-3x icn main-color-bg"></i><div>Idle Events</div>
+            </th>
+            <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Accel Events</div>
+            </th>
+            <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Rapid Deccel Events</div>
+            </th>
+            <th class="text-center   col-1"><i class="fas fa-truck fa-3x icn main-color-bg"></i><div>Speeding Events</div>
+            </th>
+            <th class="text-center   col-1 "><i class="fas fa-clipboard-list  fa-3x main-color-bg"></i><div>Score<br><small>% of Goal</small></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+  
+        </tbody>
+      </table>
 
 
 
