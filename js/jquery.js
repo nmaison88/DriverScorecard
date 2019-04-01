@@ -60,7 +60,7 @@ $(document).ready(function() {
     function(data) {
       $(".result").html(data);
       database = data;
-console.log(data)
+// console.log(data)
       getTotals();
 
       for (var w = 0; w < mileageTotal.length; w++) {
@@ -148,7 +148,6 @@ console.log(data)
       $("#outsidegoal").text(fScore);
     }
   );
-  bestPerformers();
 }); //end of the Get Json
 
 $("#GroupView").click(() => {
@@ -171,6 +170,7 @@ $("#Overview").click(() => {
   $("#OverViewContainer").css("display", "block");
 
   graph();
+
 });
 
 
@@ -270,7 +270,8 @@ graph = () => {
       }
     }
   });
- 
+  bestPerformers();
+
 };
 Groupgraph = () => {
   new Chart(document.getElementById("mychartfourth"), {
@@ -635,6 +636,7 @@ tableMaker = () => {
     sPaginationType: "numbers"
   });
 };
+//selecting from Group Dropdown
 $('select').change(function() {
     // alert($(this).val());
     $("#Grouptable").DataTable({
@@ -944,7 +946,7 @@ bestPerformers=()=>{
       header +
       '">' +
       database.list[i].hrshturn +
-      "</td>" +
+      "</td>" + 
       '<td class="' +
       redchk3 +
       " col-1 " +
@@ -987,17 +989,49 @@ bestPerformers=()=>{
 i++;
 
 
-$("#TopPerfTable").DataTable({
+
+
+});
+
+// $("#TopPerfTable > tr").slice(0,10).remove();
+// $("#TopPerfTable").find("tr:gt(10)").remove();
+
+var topTenTable= $("#TopPerfTable").DataTable({
+  destroy: true,
   paging: true,
-  searching: true,
+  searching: false,
   lengthChange: false,
   ordering: true,
-  info: true,
+  "order": [[ 3, "desc" ]],
+  colReorder: false,
+
+  info: false,
   autoWidth: true,
   dom: "lfrtipB",
   buttons: [{ extend: "csv", text: "Export csv" }],
   sPaginationType: "numbers"
 });
 
-});
+
+
+document.querySelector('#TopPerfTable_paginate').remove();
+document.querySelector('#TopPerfTable_wrapper > div').remove();
+
+// topTenTable.colReorder().disable();
+// var gettable = $('#TopPerfTable').DataTable();
+ 
+// var data = gettable.rows().data();
+
+//   for( var n=0; n<data.length; n++){
+//     // console.log(data[n])
+//     if(n>10){
+//       // console.log(data[n])
+//       $('#TopPerfTable').dataTable().api().row(n).parent('tr').remove().draw();
+//       console.log('removed one');
+//     }
+//   }
+
+
+
+
 }
