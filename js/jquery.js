@@ -155,6 +155,11 @@ $("#GroupView").click(() => {
   $("#OverViewContainer").css("display", "none");
   $("#GroupViewContainer").css("display", "block");
   Groupgraph();
+  $('#GroupView').addClass('selected')
+  $('#VehicleView').removeClass('selected')
+  $('#Overview').removeClass('selected')
+
+
   
 });
 
@@ -162,12 +167,19 @@ $("#VehicleView").click(() => {
   $("#GroupViewContainer").css("display", "none");
   $("#OverViewContainer").css("display", "none");
   $("#VehicleViewContainer").css("display", "block");
+  $('#VehicleView').addClass('selected')
+  $('#GroupView').removeClass('selected')
+  $('#Overview').removeClass('selected')
+
 });
 
 $("#Overview").click(() => {
   $("#GroupViewContainer").css("display", "none");
   $("#VehicleViewContainer").css("display", "none");
   $("#OverViewContainer").css("display", "block");
+  $('#Overview').addClass('selected')
+  $('#GroupView').removeClass('selected')
+  $('#VehicleView').removeClass('selected')
 
   graph();
 
@@ -270,6 +282,8 @@ graph = () => {
       }
     }
   });
+  worstPerformers();
+
   bestPerformers();
 
 };
@@ -528,11 +542,18 @@ tableMaker = () => {
     if (isNaN(Inputscore)) {
       Inputscore = "100";
     }
-    if (Inputscore < 70) {
+    if (Inputscore < 70 && Inputscore > 0) {
       var grade = "FScore";
       fScore++;
+    
+  } else if (Inputscore <= 0) {
+    var grade = "FScore";
+    Inputscore = "0";
 
-    } else if (Inputscore >= 70 && Inputscore < 80) {
+      fScore++;
+
+  }
+   else if (Inputscore >= 70 && Inputscore < 80) {
       var grade = "CScore";
       cScore++;
 
@@ -627,8 +648,11 @@ tableMaker = () => {
   $("#table").DataTable({
     paging: true,
     searching: true,
-    lengthChange: false,
+    lengthChange: true,
+    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
     ordering: true,
+    "order": [[ 0, "desc" ]],
+
     info: true,
     autoWidth: true,
     dom: "lfrtipB",
@@ -641,7 +665,7 @@ $('select').change(function() {
     // alert($(this).val());
     $("#Grouptable").DataTable({
     destroy: true,
-    paging: true,
+    paging: false,
     searching: true,
     lengthChange: false,
     ordering: true,
@@ -719,8 +743,12 @@ $('select').change(function() {
     if (isNaN(Inputscore)) {
       Inputscore = "100";
     }
-    if (Inputscore < 70) {
+    if (Inputscore < 70 && Inputscore >0) {
       var grade = "FScore";
+    }else if (Inputscore <= 0 ) {
+      var grade = "FScore";
+      Inputscore = "0";
+
     } else if (Inputscore >= 70 && Inputscore < 80) {
       var grade = "CScore";
     } else if (Inputscore >= 80 && Inputscore < 90) {
@@ -815,7 +843,7 @@ i++;
   // Populate the table after grabbing the json data and parsing
   var table = $("#Grouptable").DataTable({
     destroy: true,
-    paging: true,
+    paging: false,
     searching: true,
     lengthChange: false,
     ordering: true,
@@ -898,6 +926,10 @@ bestPerformers=()=>{
     }
     if (Inputscore < 70) {
       var grade = "FScore";
+    }
+      else if (Inputscore <= 0) {
+        Inputscore="0";
+      
     } else if (Inputscore >= 70 && Inputscore < 80) {
       var grade = "CScore";
     } else if (Inputscore >= 80 && Inputscore < 90) {
@@ -999,12 +1031,11 @@ i++;
 var topTenTable= $("#TopPerfTable").DataTable({
   destroy: true,
   paging: true,
+  "orderFixed": [[ 9, "desc" ]],
   searching: false,
   lengthChange: false,
   ordering: true,
-  "order": [[ 3, "desc" ]],
   colReorder: false,
-
   info: false,
   autoWidth: true,
   dom: "lfrtipB",
@@ -1012,26 +1043,307 @@ var topTenTable= $("#TopPerfTable").DataTable({
   sPaginationType: "numbers"
 });
 
-
+ 
 
 document.querySelector('#TopPerfTable_paginate').remove();
 document.querySelector('#TopPerfTable_wrapper > div').remove();
 
-// topTenTable.colReorder().disable();
-// var gettable = $('#TopPerfTable').DataTable();
- 
-// var data = gettable.rows().data();
-
-//   for( var n=0; n<data.length; n++){
-//     // console.log(data[n])
-//     if(n>10){
-//       // console.log(data[n])
-//       $('#TopPerfTable').dataTable().api().row(n).parent('tr').remove().draw();
-//       console.log('removed one');
-//     }
-//   }
 
 
 
 
 }
+worstPerformers=()=>{
+
+  var i = 0;
+  Object.keys(database.list).forEach(function(key) {
+    var indvidlepercent = Math.round((database.list[i].idle * 100) / Idlesum);
+    var indvspeedpercent = Math.round(
+      (database.list[i].Speeding * 100) / speedingsum
+    );
+    var indvrapidaccpercent = Math.round(
+      (database.list[i].rapidacell * 100) / rapidacellsum
+    );
+    var indvhrshbreakpercent = Math.round(
+      (database.list[i].hrshbreak * 100) / hrshbreaksum
+    );
+    var indvhrshtrnpercent = Math.round(
+      (database.list[i].hrshturn * 100) / hrshturnsum
+    );
+
+    if (database.list[i].hrshbreak <= goal) {
+      var hrshcheck = "success";
+    } else {
+      var hrshcheck = "danger";
+    }
+    if (i == 0) {
+    } else {
+      var header = "standard ";
+    }
+
+    if (1 > goal) {
+      var redchk0 = "danger";
+    } else {
+      var redchk0 = "success";
+    }
+
+    if (database.list[i].rapidacell > goal) {
+      var redchk1 = "danger";
+    } else {
+      var redchk1 = "success";
+    }
+    if (database.list[i].hrshturn > goal) {
+      var redchk2 = "danger";
+    } else {
+      var redchk2 = "success";
+    }
+    if (database.list[i].idle > goal) {
+      var redchk3 = "danger";
+    } else {
+      var redchk3 = "success";
+    }
+    var score =
+      database.list[i].hrshturn +
+      database.list[i].idle +
+      database.list[i].rapidacell +
+      database.list[i].hrshbreak +
+      database.list[i].Speeding;
+    // console.log('added score',score);
+
+    var Inputscore = Math.round(
+      (score / database.list[i].mileage) * 100 * -1 + 100
+    );
+    // console.log('input score',Inputscore);
+    if (isNaN(Inputscore)) {
+      Inputscore = "100";
+    }
+    if (Inputscore < 70 && Inputscore > 0) {
+      var grade = "FScore";
+    }
+      else if (Inputscore <= 0) {
+        Inputscore = "0";
+        var grade = "FScore";
+
+    } else if (Inputscore >= 70 && Inputscore < 80) {
+      var grade = "CScore";
+    } else if (Inputscore >= 80 && Inputscore < 90) {
+      var grade = "BScore";
+    } else if (Inputscore >= 90 && Inputscore <= 100) {
+      var grade = "AScore";
+    }
+    
+
+
+    var row =
+      '<tr class=" groupTable d-flex">' +
+      '<td class="surveyQuestion col-1 ' +
+      header +
+      '">' +
+      database.list[i].vehicle +
+      "</td>" +
+      '<td class="surveyQuestion col-1 ' +
+      header +
+      '">' +
+      database.list[i].group +
+      "</td>" +
+      '<td class=" col-1 ' +
+      header +
+      '">' +
+      database.list[i].mileage.toLocaleString() +
+      "</td>" +
+      '<td class="col-3 ' +
+      header +
+      '">' +
+      '<ul id="progress" class="progress   "><li style=" width:20% " class="bar bar0 ">' +
+      indvhrshtrnpercent +
+      '%<li style=" width:20% " class="bar bar2">' +
+      indvidlepercent +
+      '%<li style=" width:20% " class="bar bar3">' +
+      indvrapidaccpercent +
+      '%<li style=" width:20% " class="bar bar4">' +
+      indvhrshbreakpercent +
+      '%<li style=" width:20%" class="bar bar5">' +
+      indvspeedpercent +
+      "% </ul>" +
+      "</td>" +
+      '<td class="' +
+      redchk2 +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].hrshturn +
+      "</td>" + 
+      '<td class="' +
+      redchk3 +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].idle +
+      "</td>" +
+      '<td class="' +
+      redchk1 +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].rapidacell +
+      "</td>" +
+      '<td class="' +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].hrshbreak +
+      "</td>" +
+      '<td class="' +
+      redchk3 +
+      " col-1 " +
+      header +
+      '">' +
+      database.list[i].Speeding +
+      "</td>" +
+      '<td class="' +
+      grade +
+      " col-1 " +
+      header +
+      '">' +
+      Inputscore +
+      "<span>%</span></td>" +
+      "</tr>";
+    $("#WorstPerfTable").append(row);
+
+    
+
+i++;
+
+
+
+
+});
+
+// $("#TopPerfTable > tr").slice(0,10).remove();
+// $("#TopPerfTable").find("tr:gt(10)").remove();
+
+var topTenTable= $("#WorstPerfTable").DataTable({
+  destroy: true,
+  paging: true,
+  "orderFixed": [[ 9, "asc" ]],
+  searching: false,
+  lengthChange: false,
+  ordering: true,
+  colReorder: false,
+  info: false,
+  autoWidth: true,
+  dom: "lfrtipB",
+  buttons: [{ extend: "csv", text: "Export csv" }],
+  sPaginationType: "numbers"
+});
+
+ 
+
+document.querySelector('#WorstPerfTable_paginate').remove();
+document.querySelector('#WorstPerfTable_wrapper > div').remove();
+
+
+
+
+
+}
+
+
+
+
+// var holder={
+// 	type: 'line',
+
+// 	// optional drawTime to control layering, overrides global drawTime setting
+// 	drawTime: 'afterDatasetsDraw',
+
+// 	// optional annotation ID (must be unique)
+// 	id: 'a-line-1',
+
+// 	// set to 'vertical' to draw a vertical line
+// 	mode: 'horizontal',
+
+// 	// ID of the scale to bind onto
+// 	scaleID: 'y-axis-0',
+
+// 	// Data value to draw the line at
+// 	value: 25,
+
+// 	// Optional value at which the line draw should end
+// 	endValue: 26,
+
+// 	// Line color
+// 	borderColor: 'red',
+
+// 	// Line width
+// 	borderWidth: 2,
+
+// 	// Line dash
+// 	// https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash
+// 	borderDash: [2, 2],
+
+// 	// Line Dash Offset
+// 	// https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset
+// 	borderDashOffset: 5,
+
+// 	label: {
+// 		// Background color of label, default below
+// 		backgroundColor: 'rgba(0,0,0,0.8)',
+
+// 		// Font family of text, inherits from global
+// 		fontFamily: "sans-serif",
+
+// 		// Font size of text, inherits from global
+// 		fontSize: 12,
+
+// 		// Font style of text, default below
+// 		fontStyle: "bold",
+
+// 		// Font color of text, default below
+// 		fontColor: "#fff",
+
+// 		// Padding of label to add left/right, default below
+// 		xPadding: 6,
+
+// 		// Padding of label to add top/bottom, default below
+// 		yPadding: 6,
+
+// 		// Radius of label rectangle, default below
+// 		cornerRadius: 6,
+
+// 		// Anchor position of label on line, can be one of: top, bottom, left, right, center. Default below.
+// 		position: "center",
+
+// 		// Adjustment along x-axis (left-right) of label relative to above number (can be negative)
+// 		// For horizontal lines positioned left or right, negative values move
+// 		// the label toward the edge, and positive values toward the center.
+// 		xAdjust: 0,
+
+// 		// Adjustment along y-axis (top-bottom) of label relative to above number (can be negative)
+// 		// For vertical lines positioned top or bottom, negative values move
+// 		// the label toward the edge, and positive values toward the center.
+// 		yAdjust: 0,
+
+// 		// Whether the label is enabled and should be displayed
+// 		enabled: false,
+
+// 		// Text to display in label - default is null
+// 		content: "Test label"
+// 	},
+
+// 	// Mouse event handlers - be sure to enable the corresponding events in the
+// 	// annotation events array or the event handler will not be called.
+// 	// See https://developer.mozilla.org/en-US/docs/Web/Events for a list of
+// 	// supported mouse events.
+// 	onMouseenter: function(e) {},
+// 	onMouseover: function(e) {},
+// 	onMouseleave: function(e) {},
+// 	onMouseout: function(e) {},
+// 	onMousemove: function(e) {},
+// 	onMousedown: function(e) {},
+// 	onMouseup: function(e) {},
+// 	onClick: function(e) {},
+// 	onDblclick: function(e) {},
+// 	onContextmenu: function(e) {},
+// 	onWheel: function(e) {}
+// }
