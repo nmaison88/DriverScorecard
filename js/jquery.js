@@ -56,7 +56,7 @@ $(document).ready(function() {
   $.get(
     // "https://api.myjson.com/bins/quch2", //with better names
     //'https://api.myjson.com/bins/1eh66i',
-    'https://98.148.158.250:2000/data',
+    'http://98.148.158.250:2000/data',
     // 'https://api.myjson.com/bins/zxsfq', //large records but no groups
     function(data) {
       $(".result").html(data);
