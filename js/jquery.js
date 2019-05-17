@@ -56,7 +56,6 @@ $(document).ready(function() {
   $.get(
     // "https://api.myjson.com/bins/quch2", //with better names
     'https://api.myjson.com/bins/1eh66i',
-    //'http://98.148.158.250:2000/data',
     // 'https://api.myjson.com/bins/zxsfq', //large records but no groups
     function(data) {
       $(".result").html(data);
@@ -450,7 +449,7 @@ Groupgraph = () => {
 getTotals = () => {
   t = 0;
 
-  database.forEach(function(key) {
+  database.list.forEach(function(key) {
     mileageTotal.push(key.mileage);
     idleTotal.push(key.idle);
     speedingTotal.push(key.Speeding);
@@ -482,22 +481,22 @@ getTotals = () => {
 
 tableMaker = () => {
   var i = 0;
-  Object.keys(database).forEach(function(key) {
-    var indvidlepercent = Math.round((database[i].idle * 100) / Idlesum);
+  Object.keys(database.list).forEach(function(key) {
+    var indvidlepercent = Math.round((database.list[i].idle * 100) / Idlesum);
     var indvspeedpercent = Math.round(
-      (database[i].Speeding * 100) / speedingsum
+      (database.list[i].Speeding * 100) / speedingsum
     );
     var indvrapidaccpercent = Math.round(
-      (database[i].rapidacell * 100) / rapidacellsum
+      (database.list[i].rapidacell * 100) / rapidacellsum
     );
     var indvhrshbreakpercent = Math.round(
-      (database[i].hrshbreak * 100) / hrshbreaksum
+      (database.list[i].hrshbreak * 100) / hrshbreaksum
     );
     var indvhrshtrnpercent = Math.round(
-      (database[i].hrshturn * 100) / hrshturnsum
+      (database.list[i].hrshturn * 100) / hrshturnsum
     );
 
-    if (database[i].hrshbreak <= goal) {
+    if (database.list[i].hrshbreak <= goal) {
       var hrshcheck = "success";
     } else {
       var hrshcheck = "danger";
@@ -513,31 +512,31 @@ tableMaker = () => {
       var redchk0 = "success";
     }
 
-    if (database[i].rapidacell > goal) {
+    if (database.list[i].rapidacell > goal) {
       var redchk1 = "danger";
     } else {
       var redchk1 = "success";
     }
-    if (database[i].hrshturn > goal) {
+    if (database.list[i].hrshturn > goal) {
       var redchk2 = "danger";
     } else {
       var redchk2 = "success";
     }
-    if (database[i].idle > goal) {
+    if (database.list[i].idle > goal) {
       var redchk3 = "danger";
     } else {
       var redchk3 = "success";
     }
     var score =
-      database[i].hrshturn +
-      database[i].idle +
-      database[i].rapidacell +
-      database[i].hrshbreak +
-      database[i].Speeding;
+      database.list[i].hrshturn +
+      database.list[i].idle +
+      database.list[i].rapidacell +
+      database.list[i].hrshbreak +
+      database.list[i].Speeding;
     // console.log('added score',score);
 
     var Inputscore = Math.round(
-      (score / database[i].mileage) * 100 * -1 + 100
+      (score / database.list[i].mileage) * 100 * -1 + 100
     );
     // console.log('input score',Inputscore);
     if (isNaN(Inputscore)) {
@@ -572,17 +571,17 @@ tableMaker = () => {
       '<td class="surveyQuestion col-1 ' +
       header +
       '">' +
-      database[i].vehicle +
+      database.list[i].vehicle +
       "</td>" +
       '<td class="surveyQuestion col-1 ' +
       header +
       '">' +
-      database[i].group +
+      database.list[i].group +
       "</td>" +
       '<td class=" col-1 ' +
       header +
       '">' +
-      database[i].mileage.toLocaleString() +
+      database.list[i].mileage.toLocaleString() +
       "</td>" +
       '<td class="col-3 ' +
       header +
@@ -604,34 +603,34 @@ tableMaker = () => {
       " col-1 " +
       header +
       '">' +
-      database[i].hrshturn +
+      database.list[i].hrshturn +
       "</td>" +
       '<td class="' +
       redchk3 +
       " col-1 " +
       header +
       '">' +
-      database[i].idle +
+      database.list[i].idle +
       "</td>" +
       '<td class="' +
       redchk1 +
       " col-1 " +
       header +
       '">' +
-      database[i].rapidacell +
+      database.list[i].rapidacell +
       "</td>" +
       '<td class="' +
       " col-1 " +
       header +
       '">' +
-      database[i].hrshbreak +
+      database.list[i].hrshbreak +
       "</td>" +
       '<td class="' +
       redchk3 +
       " col-1 " +
       header +
       '">' +
-      database[i].Speeding +
+      database.list[i].Speeding +
       "</td>" +
       '<td class="' +
       grade +
@@ -683,22 +682,22 @@ $('select').change(function() {
     // console.log('compareGroup',compareGroup);
     
     var i = 0;
-  Object.keys(database).forEach(function(key) {
-    var indvidlepercent = Math.round((database[i].idle * 100) / Idlesum);
+  Object.keys(database.list).forEach(function(key) {
+    var indvidlepercent = Math.round((database.list[i].idle * 100) / Idlesum);
     var indvspeedpercent = Math.round(
-      (database[i].Speeding * 100) / speedingsum
+      (database.list[i].Speeding * 100) / speedingsum
     );
     var indvrapidaccpercent = Math.round(
-      (database[i].rapidacell * 100) / rapidacellsum
+      (database.list[i].rapidacell * 100) / rapidacellsum
     );
     var indvhrshbreakpercent = Math.round(
-      (database[i].hrshbreak * 100) / hrshbreaksum
+      (database.list[i].hrshbreak * 100) / hrshbreaksum
     );
     var indvhrshtrnpercent = Math.round(
-      (database[i].hrshturn * 100) / hrshturnsum
+      (database.list[i].hrshturn * 100) / hrshturnsum
     );
 
-    if (database[i].hrshbreak <= goal) {
+    if (database.list[i].hrshbreak <= goal) {
       var hrshcheck = "success";
     } else {
       var hrshcheck = "danger";
@@ -714,31 +713,31 @@ $('select').change(function() {
       var redchk0 = "success";
     }
 
-    if (database[i].rapidacell > goal) {
+    if (database.list[i].rapidacell > goal) {
       var redchk1 = "danger";
     } else {
       var redchk1 = "success";
     }
-    if (database[i].hrshturn > goal) {
+    if (database.list[i].hrshturn > goal) {
       var redchk2 = "danger";
     } else {
       var redchk2 = "success";
     }
-    if (database[i].idle > goal) {
+    if (database.list[i].idle > goal) {
       var redchk3 = "danger";
     } else {
       var redchk3 = "success";
     }
     var score =
-      database[i].hrshturn +
-      database[i].idle +
-      database[i].rapidacell +
-      database[i].hrshbreak +
-      database[i].Speeding;
+      database.list[i].hrshturn +
+      database.list[i].idle +
+      database.list[i].rapidacell +
+      database.list[i].hrshbreak +
+      database.list[i].Speeding;
     // console.log('added score',score);
 
     var Inputscore = Math.round(
-      (score / database[i].mileage) * 100 * -1 + 100
+      (score / database.list[i].mileage) * 100 * -1 + 100
     );
     // console.log('input score',Inputscore);
     if (isNaN(Inputscore)) {
@@ -765,17 +764,17 @@ $('select').change(function() {
       '<td class="surveyQuestion col-1 ' +
       header +
       '">' +
-      database[i].vehicle +
+      database.list[i].vehicle +
       "</td>" +
       '<td class="surveyQuestion col-1 ' +
       header +
       '">' +
-      database[i].group +
+      database.list[i].group +
       "</td>" +
       '<td class=" col-1 ' +
       header +
       '">' +
-      database[i].mileage.toLocaleString() +
+      database.list[i].mileage.toLocaleString() +
       "</td>" +
       '<td class="col-3 ' +
       header +
@@ -797,34 +796,34 @@ $('select').change(function() {
       " col-1 " +
       header +
       '">' +
-      database[i].hrshturn +
+      database.list[i].hrshturn +
       "</td>" +
       '<td class="' +
       redchk3 +
       " col-1 " +
       header +
       '">' +
-      database[i].idle +
+      database.list[i].idle +
       "</td>" +
       '<td class="' +
       redchk1 +
       " col-1 " +
       header +
       '">' +
-      database[i].rapidacell +
+      database.list[i].rapidacell +
       "</td>" +
       '<td class="' +
       " col-1 " +
       header +
       '">' +
-      database[i].hrshbreak +
+      database.list[i].hrshbreak +
       "</td>" +
       '<td class="' +
       redchk3 +
       " col-1 " +
       header +
       '">' +
-      database[i].Speeding +
+      database.list[i].Speeding +
       "</td>" +
       '<td class="' +
       grade +
@@ -864,22 +863,22 @@ i++;
 bestPerformers=()=>{
 
   var i = 0;
-  Object.keys(database).forEach(function(key) {
-    var indvidlepercent = Math.round((database[i].idle * 100) / Idlesum);
+  Object.keys(database.list).forEach(function(key) {
+    var indvidlepercent = Math.round((database.list[i].idle * 100) / Idlesum);
     var indvspeedpercent = Math.round(
-      (database[i].Speeding * 100) / speedingsum
+      (database.list[i].Speeding * 100) / speedingsum
     );
     var indvrapidaccpercent = Math.round(
-      (database[i].rapidacell * 100) / rapidacellsum
+      (database.list[i].rapidacell * 100) / rapidacellsum
     );
     var indvhrshbreakpercent = Math.round(
-      (database[i].hrshbreak * 100) / hrshbreaksum
+      (database.list[i].hrshbreak * 100) / hrshbreaksum
     );
     var indvhrshtrnpercent = Math.round(
-      (database[i].hrshturn * 100) / hrshturnsum
+      (database.list[i].hrshturn * 100) / hrshturnsum
     );
 
-    if (database[i].hrshbreak <= goal) {
+    if (database.list[i].hrshbreak <= goal) {
       var hrshcheck = "success";
     } else {
       var hrshcheck = "danger";
@@ -895,31 +894,31 @@ bestPerformers=()=>{
       var redchk0 = "success";
     }
 
-    if (database[i].rapidacell > goal) {
+    if (database.list[i].rapidacell > goal) {
       var redchk1 = "danger";
     } else {
       var redchk1 = "success";
     }
-    if (database[i].hrshturn > goal) {
+    if (database.list[i].hrshturn > goal) {
       var redchk2 = "danger";
     } else {
       var redchk2 = "success";
     }
-    if (database[i].idle > goal) {
+    if (database.list[i].idle > goal) {
       var redchk3 = "danger";
     } else {
       var redchk3 = "success";
     }
     var score =
-      database[i].hrshturn +
-      database[i].idle +
-      database[i].rapidacell +
-      database[i].hrshbreak +
-      database[i].Speeding;
+      database.list[i].hrshturn +
+      database.list[i].idle +
+      database.list[i].rapidacell +
+      database.list[i].hrshbreak +
+      database.list[i].Speeding;
     // console.log('added score',score);
 
     var Inputscore = Math.round(
-      (score / database[i].mileage) * 100 * -1 + 100
+      (score / database.list[i].mileage) * 100 * -1 + 100
     );
     // console.log('input score',Inputscore);
     if (isNaN(Inputscore)) {
@@ -946,17 +945,17 @@ bestPerformers=()=>{
       '<td class="surveyQuestion col-1 ' +
       header +
       '">' +
-      database[i].vehicle +
+      database.list[i].vehicle +
       "</td>" +
       '<td class="surveyQuestion col-1 ' +
       header +
       '">' +
-      database[i].group +
+      database.list[i].group +
       "</td>" +
       '<td class=" col-1 ' +
       header +
       '">' +
-      database[i].mileage.toLocaleString() +
+      database.list[i].mileage.toLocaleString() +
       "</td>" +
       '<td class="col-3 ' +
       header +
@@ -978,34 +977,34 @@ bestPerformers=()=>{
       " col-1 " +
       header +
       '">' +
-      database[i].hrshturn +
+      database.list[i].hrshturn +
       "</td>" + 
       '<td class="' +
       redchk3 +
       " col-1 " +
       header +
       '">' +
-      database[i].idle +
+      database.list[i].idle +
       "</td>" +
       '<td class="' +
       redchk1 +
       " col-1 " +
       header +
       '">' +
-      database[i].rapidacell +
+      database.list[i].rapidacell +
       "</td>" +
       '<td class="' +
       " col-1 " +
       header +
       '">' +
-      database[i].hrshbreak +
+      database.list[i].hrshbreak +
       "</td>" +
       '<td class="' +
       redchk3 +
       " col-1 " +
       header +
       '">' +
-      database[i].Speeding +
+      database.list[i].Speeding +
       "</td>" +
       '<td class="' +
       grade +
@@ -1057,22 +1056,22 @@ document.querySelector('#TopPerfTable_wrapper > div').remove();
 worstPerformers=()=>{
 
   var i = 0;
-  Object.keys(database).forEach(function(key) {
-    var indvidlepercent = Math.round((database[i].idle * 100) / Idlesum);
+  Object.keys(database.list).forEach(function(key) {
+    var indvidlepercent = Math.round((database.list[i].idle * 100) / Idlesum);
     var indvspeedpercent = Math.round(
-      (database[i].Speeding * 100) / speedingsum
+      (database.list[i].Speeding * 100) / speedingsum
     );
     var indvrapidaccpercent = Math.round(
-      (database[i].rapidacell * 100) / rapidacellsum
+      (database.list[i].rapidacell * 100) / rapidacellsum
     );
     var indvhrshbreakpercent = Math.round(
-      (database[i].hrshbreak * 100) / hrshbreaksum
+      (database.list[i].hrshbreak * 100) / hrshbreaksum
     );
     var indvhrshtrnpercent = Math.round(
-      (database[i].hrshturn * 100) / hrshturnsum
+      (database.list[i].hrshturn * 100) / hrshturnsum
     );
 
-    if (database[i].hrshbreak <= goal) {
+    if (database.list[i].hrshbreak <= goal) {
       var hrshcheck = "success";
     } else {
       var hrshcheck = "danger";
@@ -1088,31 +1087,31 @@ worstPerformers=()=>{
       var redchk0 = "success";
     }
 
-    if (database[i].rapidacell > goal) {
+    if (database.list[i].rapidacell > goal) {
       var redchk1 = "danger";
     } else {
       var redchk1 = "success";
     }
-    if (database[i].hrshturn > goal) {
+    if (database.list[i].hrshturn > goal) {
       var redchk2 = "danger";
     } else {
       var redchk2 = "success";
     }
-    if (database[i].idle > goal) {
+    if (database.list[i].idle > goal) {
       var redchk3 = "danger";
     } else {
       var redchk3 = "success";
     }
     var score =
-      database[i].hrshturn +
-      database[i].idle +
-      database[i].rapidacell +
-      database[i].hrshbreak +
-      database[i].Speeding;
+      database.list[i].hrshturn +
+      database.list[i].idle +
+      database.list[i].rapidacell +
+      database.list[i].hrshbreak +
+      database.list[i].Speeding;
     // console.log('added score',score);
 
     var Inputscore = Math.round(
-      (score / database[i].mileage) * 100 * -1 + 100
+      (score / database.list[i].mileage) * 100 * -1 + 100
     );
     // console.log('input score',Inputscore);
     if (isNaN(Inputscore)) {
@@ -1140,17 +1139,17 @@ worstPerformers=()=>{
       '<td class="surveyQuestion col-1 ' +
       header +
       '">' +
-      database[i].vehicle +
+      database.list[i].vehicle +
       "</td>" +
       '<td class="surveyQuestion col-1 ' +
       header +
       '">' +
-      database[i].group +
+      database.list[i].group +
       "</td>" +
       '<td class=" col-1 ' +
       header +
       '">' +
-      database[i].mileage.toLocaleString() +
+      database.list[i].mileage.toLocaleString() +
       "</td>" +
       '<td class="col-3 ' +
       header +
@@ -1172,34 +1171,34 @@ worstPerformers=()=>{
       " col-1 " +
       header +
       '">' +
-      database[i].hrshturn +
+      database.list[i].hrshturn +
       "</td>" + 
       '<td class="' +
       redchk3 +
       " col-1 " +
       header +
       '">' +
-      database[i].idle +
+      database.list[i].idle +
       "</td>" +
       '<td class="' +
       redchk1 +
       " col-1 " +
       header +
       '">' +
-      database[i].rapidacell +
+      database.list[i].rapidacell +
       "</td>" +
       '<td class="' +
       " col-1 " +
       header +
       '">' +
-      database[i].hrshbreak +
+      database.list[i].hrshbreak +
       "</td>" +
       '<td class="' +
       redchk3 +
       " col-1 " +
       header +
       '">' +
-      database[i].Speeding +
+      database.list[i].Speeding +
       "</td>" +
       '<td class="' +
       grade +
